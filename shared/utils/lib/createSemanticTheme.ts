@@ -1,11 +1,10 @@
 import {
+  background,
+  colors,
   ThemeTokens,
   variant,
-  colors,
-  background,
-  spacing,
-  typography,
 } from '@shared/utils/lib/themeToken';
+import { typography } from '@shared/utils/lib/themeToken/typoToken';
 
 export const createSemanticTheme = (tokens: ThemeTokens) => {
   // 기본 변수들과 사용자 정의 토큰을 병합
@@ -36,7 +35,6 @@ export const createSemanticTheme = (tokens: ThemeTokens) => {
         error: mergedVariant.error || variant.error,
       },
     },
-    spacing: tokens.spacing || spacing,
     typography: tokens.typography || typography,
   };
 };

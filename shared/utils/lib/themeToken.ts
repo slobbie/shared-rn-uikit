@@ -1,3 +1,11 @@
+import {
+  IFontFamilies,
+  IFontSizes,
+  IFontWeights,
+  ILineHeights,
+  typography,
+} from '@shared/utils/lib/themeToken/typoToken';
+
 export const variant = {
   primary: '#2089dc',
   secondary: '#ca71eb',
@@ -29,38 +37,6 @@ export const background = {
   searchBg: '#303337',
 };
 
-export const fontSize = {
-  xs: 12,
-  sm: 14,
-  md: 16,
-  lg: 18,
-  xl: 20,
-  xxl: 24,
-};
-
-export const lineHeight = {
-  xs: 16,
-  sm: 20,
-  md: 24,
-  lg: 28,
-  xl: 32,
-  xxl: 24,
-};
-
-export const fontWeight = {
-  regular: 400,
-  medium: 500,
-  semibold: 600,
-  bold: 700,
-} as const;
-
-export const fontFamily = {
-  regular: 'System',
-  medium: 'System',
-  semibold: 'System',
-  bold: 'System',
-};
-
 export const spacing = {
   xs: 2,
   sm: 4,
@@ -69,18 +45,10 @@ export const spacing = {
   xl: 16,
 };
 
-export const typography = {
-  fontFamily,
-  fontSize,
-  lineHeight,
-  fontWeight,
-};
-
 export const baseTokens = {
   variant,
   colors,
   background,
-  spacing,
   typography,
 };
 
@@ -118,54 +86,11 @@ export interface BackgroundColors {
   [key: string]: string;
 }
 
-export interface FontSizes {
-  xs: number;
-  sm: number;
-  md: number;
-  lg: number;
-  xl: number;
-  xxl: number;
-  [key: string]: number;
-}
-
-export interface LineHeights {
-  xs: number;
-  sm: number;
-  md: number;
-  lg: number;
-  xl: number;
-  xxl: number;
-  [key: string]: number;
-}
-
-export interface FontWeights {
-  regular: number;
-  medium: number;
-  bold: number;
-  [key: string]: number;
-}
-
-export interface FontFamilies {
-  regular: string;
-  medium: string;
-  bold: string;
-  [key: string]: string;
-}
-
-export interface Spacings {
-  xs: number;
-  sm: number;
-  md: number;
-  lg: number;
-  xl: number;
-  [key: string]: number;
-}
-
 export interface Typography {
-  fontFamily: FontFamilies;
-  fontSize: FontSizes;
-  lineHeight: LineHeights;
-  fontWeight: FontWeights;
+  fontFamily: IFontFamilies;
+  fontSize: IFontSizes;
+  lineHeight: ILineHeights;
+  fontWeight: IFontWeights;
   [key: string]: any;
 }
 
@@ -173,7 +98,6 @@ export interface ThemeTokensInterface {
   variant?: Partial<VariantColors>;
   colors?: Partial<BaseColors>;
   background?: Partial<BackgroundColors>;
-  spacing?: Partial<Spacings>;
   typography?: Partial<Typography>;
   [key: string]: any;
 }

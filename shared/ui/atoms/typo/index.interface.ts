@@ -49,10 +49,4 @@ export type TypoComponent = React.FC<RNTextProps> & {
 
   // Overline
   Overline: React.FC<IBaseTextProps>;
-
-  // Font Weights
-  Light: React.FC<IBaseTextProps>;
-  Regular: React.FC<IBaseTextProps>;
-  Medium: React.FC<IBaseTextProps>;
-  Bold: React.FC<IBaseTextProps>;
 };

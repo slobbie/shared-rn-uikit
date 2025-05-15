@@ -1,6 +1,5 @@
 import styled from '@emotion/native';
-import { Typo } from '@shared/ui/atoms';
-import BaseButton from '@shared/ui/atoms/button/BaseButton';
+import { Button, Typo } from '@shared/ui/atoms';
 
 export default function HomeScreen() {
   return (
@@ -19,15 +18,15 @@ export default function HomeScreen() {
       <Typo.Caption>Typo.Caption</Typo.Caption>
       <Typo.Overline>Typo.Overline</Typo.Overline> */}
 
-      <BaseButton variant='highlight'>
+      <Button.Highlight onPress={() => console.log('highlight')}>
         <Typo.Button>highlight</Typo.Button>
-      </BaseButton>
-      <BaseButton variant='opacity'>
+      </Button.Highlight>
+      <Button.Opacity onPress={() => console.log('opacity')}>
         <Typo.Button>opacity</Typo.Button>
-      </BaseButton>
-      <BaseButton variant='static'>
+      </Button.Opacity>
+      <Button.Static onPress={() => console.log('static')}>
         <Typo.Button>static</Typo.Button>
-      </BaseButton>
+      </Button.Static>
     </Section>
   );
 }

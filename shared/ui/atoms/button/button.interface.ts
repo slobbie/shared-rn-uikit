@@ -32,4 +32,11 @@ export interface IBaseButtonProps extends RNPressableProps {
   highlight?: Percentage;
   opacity?: Percentage;
   radius?: number;
+  debounceDelay?: number;
 }
+
+export type ButtonComponent = React.FC<RNPressableProps> & {
+  Static: React.FC<RNPressableProps>;
+  Opacity: React.FC<RNPressableProps>;
+  Highlight: React.FC<RNPressableProps>;
+};

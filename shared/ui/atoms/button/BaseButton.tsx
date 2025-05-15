@@ -1,6 +1,13 @@
+import { useRef } from 'react';
+import {
+  GestureResponderEvent,
+  Pressable,
+  StyleSheet,
+  View,
+} from 'react-native';
+
 import { IBaseButtonProps } from '@shared/ui/atoms/button/button.interface';
 import { useTheme } from '@shared/utils/lib/ThemeContext';
-import { Pressable, StyleSheet, View } from 'react-native';
 
 /**
  * 기본 버튼 컴포넌트
@@ -14,9 +21,11 @@ const BaseButton = ({
   highlight = 0.7,
   opacity = 0.7,
   radius = 8,
+  debounceDelay = 300,
   ...props
 }: IBaseButtonProps) => {
   const { theme } = useTheme();
+  const isCoolDown = useRef(false);
 
   const baseStyle = [
     styles.button,
@@ -32,9 +41,18 @@ const BaseButton = ({
     return baseStyle;
   };
 
+  const handlePress = (event: GestureResponderEvent) => {
+    if (isCoolDown.current) return;
+    isCoolDown.current = true;
+    onPress?.(event);
+    setTimeout(() => {
+      isCoolDown.current = false;
+    }, debounceDelay);
+  };
+
   return (
     <Pressable
-      onPress={onPress}
+      onPress={handlePress}
       disabled={disabled}
       style={pressableStyle}
       {...props}

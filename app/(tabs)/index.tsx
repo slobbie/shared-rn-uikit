@@ -1,10 +1,10 @@
 import styled from '@emotion/native';
-import { Typo } from '@shared/ui/atoms';
+import { Button, Typo } from '@shared/ui/atoms';
 
 export default function HomeScreen() {
   return (
     <Section>
-      <Typo.H1>Typo.H1</Typo.H1>
+      {/* <Typo.H1>Typo.H1</Typo.H1>
       <Typo.H2>Typo.H2</Typo.H2>
       <Typo.H3>Typo.H3</Typo.H3>
       <Typo.H4>Typo.H4</Typo.H4>
@@ -16,7 +16,17 @@ export default function HomeScreen() {
       <Typo.Body2>Typo.Body2</Typo.Body2>
       <Typo.Button>Typo.Button</Typo.Button>
       <Typo.Caption>Typo.Caption</Typo.Caption>
-      <Typo.Overline>Typo.Overline</Typo.Overline>
+      <Typo.Overline>Typo.Overline</Typo.Overline> */}
+
+      <Button.Highlight onPress={() => console.log('highlight')}>
+        <Typo.Button>highlight</Typo.Button>
+      </Button.Highlight>
+      <Button.Opacity onPress={() => console.log('opacity')}>
+        <Typo.Button>opacity</Typo.Button>
+      </Button.Opacity>
+      <Button.Static onPress={() => console.log('static')}>
+        <Typo.Button>static</Typo.Button>
+      </Button.Static>
     </Section>
   );
 }
@@ -25,4 +35,5 @@ const Section = styled.View({
   flex: 1,
   alignItems: 'center',
   justifyContent: 'center',
+  gap: 16,
 });

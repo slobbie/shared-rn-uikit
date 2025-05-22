@@ -1,5 +1,5 @@
 import styled from '@emotion/native';
-import { Button, Typo } from '@shared/ui/atoms';
+import { Button, TextInput, Typo } from '@shared/ui/atoms';
 
 export default function HomeScreen() {
   return (
@@ -17,6 +17,10 @@ export default function HomeScreen() {
       <Typo.Button>Typo.Button</Typo.Button>
       <Typo.Caption>Typo.Caption</Typo.Caption>
       <Typo.Overline>Typo.Overline</Typo.Overline> */}
+
+      <TextInput.Default placeholder='default' />
+      <TextInput.Outlined placeholder='outlined' />
+      <TextInput.Underlined placeholder='underlined' />
 
       <Button.Highlight onPress={() => console.log('highlight')}>
         <Typo.Button>highlight</Typo.Button>
@@ -36,4 +40,5 @@ const Section = styled.View({
   alignItems: 'center',
   justifyContent: 'center',
   gap: 16,
+  backgroundColor: 'tomato',
 });

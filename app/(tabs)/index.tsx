@@ -1,5 +1,5 @@
 import styled from '@emotion/native';
-import { Button, TextInput, Typo } from '@shared/ui/atoms';
+import { Button, Divider, TextInput, Typo } from '@shared/ui/atoms';
 
 export default function HomeScreen() {
   return (
@@ -31,6 +31,8 @@ export default function HomeScreen() {
       <Button.Static onPress={() => console.log('static')}>
         <Typo.Button>static</Typo.Button>
       </Button.Static>
+
+      <Divider />
     </Section>
   );
 }
@@ -40,5 +42,5 @@ const Section = styled.View({
   alignItems: 'center',
   justifyContent: 'center',
   gap: 16,
-  backgroundColor: 'tomato',
+  // backgroundColor: 'tomato',
 });

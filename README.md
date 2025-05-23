@@ -10,7 +10,7 @@
 - [ ] Icon
 - [x] Typography: 텍스트 스타일 컴포넌트
 - [x] Divider: 구분선
-- [ ] Space: 마진으로 공간을 나눠주는 컴포넌트
+- [x] Spacer: 마진으로 공간을 나눠주는 컴포넌트
 - [x] TextInput: 텍스트 입력 필드
 
 ### 2. 합성

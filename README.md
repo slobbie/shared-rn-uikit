@@ -1,50 +1,43 @@
-# Welcome to your Expo app 👋
+# Shared React Native UI Kit
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+공통 UI 컴포넌트 라이브러리입니다.
 
-## Get started
+## 컴포넌트 목록
 
-1. Install dependencies
+### 1. 기본
 
-   ```bash
-   npm install
-   ```
+- [x] Button
+- [ ] Icon
+- [x] Typography: 텍스트 스타일 컴포넌트
+- [x] Divider: 구분선
+- [ ] Space: 마진으로 공간을 나눠주는 컴포넌트
+- [x] TextInput: 텍스트 입력 필드
 
-2. Start the app
+### 2. 합성
 
-   ```bash
-   npx expo start
-   ```
+- [ ] Avatar: 프로필 이미지/이니셜 + (Badge)
+- [ ] Badge: 상태 표시 (숫자, 점)
+- [ ] Chip: Text + (Icon) + (Button)으로 구성된 태그 컴포넌트
+- [ ] Progress: 진행 상태 표시 바
+- [ ] Checkbox: 체크박스
+- [ ] Radio: 라디오 버튼
+- [ ] Switch: 토글 스위치
+- [ ] Slider: 값 선택 슬라이더
+- [ ] TextArea: 멀티라인 텍스트 입력
+- [ ] Toast: 간단한 알림 메시지
+- [ ] Tooltip: 툴팁
+- [ ] Skeleton: 로딩 스켈레톤 UI
+- [ ] Modal: 모달 다이얼로그
 
-In the output, you'll find options to open the app in a
+### 3. 레이아웃 컴포넌트
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+- [ ] Container: 콘텐츠를 감싸는 컨테이너
+- [ ] Grid: 그리드 레이아웃
+- [ ] Card: 카드형 컨테이너
+- [ ] Accordion: 아코디언 메뉴
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+### 4. 기타 유틸리티
 
-## Get a fresh project
-
-When you're ready, run:
-
-```bash
-npm run reset-project
-```
-
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
-
-## Learn more
-
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+- [ ] Loading: 로딩 인디케이터
+- [ ] ErrorBoundary: 에러 바운더리
+- [ ] Clickable: 클릭 가능한 영역

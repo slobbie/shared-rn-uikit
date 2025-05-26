@@ -7,7 +7,6 @@
 ### 1. 기본
 
 - [x] Button
-- [ ] Icon
 - [x] Typography: 텍스트 스타일 컴포넌트
 - [x] Divider: 구분선
 - [x] Spacer: 마진으로 공간을 나눠주는 컴포넌트
@@ -15,9 +14,9 @@
 
 ### 2. 합성
 
-- [ ] Avatar: 프로필 이미지/이니셜 + (Badge)
+- [ ] Avatar: 프로필 이미지/이니셜
 - [ ] Badge: 상태 표시 (숫자, 점)
-- [ ] Chip: Text + (Icon) + (Button)으로 구성된 태그 컴포넌트
+- [x] Chip: Text
 - [ ] Progress: 진행 상태 표시 바
 - [ ] Checkbox: 체크박스
 - [ ] Radio: 라디오 버튼

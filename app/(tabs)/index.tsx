@@ -1,5 +1,6 @@
 import styled from '@emotion/native';
 import { Button, Divider, TextInput, Typo } from '@shared/ui/atoms';
+import { Chip } from '@shared/ui/molecules';
 
 export default function HomeScreen() {
   return (
@@ -33,6 +34,9 @@ export default function HomeScreen() {
       </Button.Static>
 
       <Divider />
+
+      <Chip.flat label='Chip' />
+      <Chip.outlined label='Chip' />
     </Section>
   );
 }

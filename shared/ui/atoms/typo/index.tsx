@@ -1,7 +1,10 @@
 import React from 'react';
 
 import BaseText from '@shared/ui/atoms/typo/BaseText';
-import { IBaseTextProps, TypoComponent } from './index.interface';
+import {
+  IBaseTextProps,
+  TypoComponent,
+} from '@shared/ui/atoms/typo/index.interface';
 
 // 기본 타이포그래피 컴포넌트
 const TypoBase: React.FC<IBaseTextProps> = ({

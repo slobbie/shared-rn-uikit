@@ -1,6 +1,6 @@
 import styled from '@emotion/native';
 import { Button, Divider, TextInput, Typo } from '@shared/ui/atoms';
-import { Chip } from '@shared/ui/molecules';
+import { Badge, Chip } from '@shared/ui/molecules';
 
 export default function HomeScreen() {
   return (
@@ -37,6 +37,9 @@ export default function HomeScreen() {
 
       <Chip.flat label='Chip' />
       <Chip.outlined label='Chip' />
+
+      <Badge.withText label='1' />
+      <Badge.dot />
     </Section>
   );
 }
@@ -46,5 +49,4 @@ const Section = styled.View({
   alignItems: 'center',
   justifyContent: 'center',
   gap: 16,
-  // backgroundColor: 'tomato',
 });

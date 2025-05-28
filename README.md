@@ -14,8 +14,8 @@
 
 ### 2. 합성
 
-- [ ] Avatar: 프로필 이미지/이니셜
-- [ ] Badge: 상태 표시 (숫자, 점)
+- [x] Avatar: 프로필 이미지/이니셜
+- [x] Badge: 상태 표시 (숫자, 점)
 - [x] Chip: Text
 - [ ] Progress: 진행 상태 표시 바
 - [ ] Checkbox: 체크박스

@@ -36,6 +36,11 @@ export const createSemanticTheme = (tokens: ThemeTokens) => {
       },
     },
     typography: tokens.typography || typography,
+    baseTokens: {
+      ...background,
+      ...variant,
+      ...colors,
+    },
   };
 };
 

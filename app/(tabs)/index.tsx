@@ -1,6 +1,6 @@
 import styled from '@emotion/native';
 import { Button, Divider, TextInput, Typo } from '@shared/ui/atoms';
-import { Badge, Chip } from '@shared/ui/molecules';
+import { Avatar, Badge, Chip } from '@shared/ui/molecules';
 
 export default function HomeScreen() {
   return (
@@ -40,6 +40,9 @@ export default function HomeScreen() {
 
       <Badge.withText label='1' />
       <Badge.dot />
+
+      <Avatar.image imageUrl='https://velog.velcdn.com/images/long9725/post/9b37b925-e6d1-4413-8f30-86b21be5af45/image.png' />
+      <Avatar.text label='MRNT' />
     </Section>
   );
 }

@@ -1,5 +1,8 @@
-import { IBadgeBaseProps, IBadgeDotProps } from './badge.interface';
-import BadgeBase from './BadgeBase';
+import {
+  IBadgeBaseProps,
+  IBadgeDotProps,
+} from '@shared/ui/molecules/badge/badge.interface';
+import BadgeBase from '@shared/ui/molecules/badge/BadgeBase';
 
 const Badge = ({ label, size }: IBadgeBaseProps) => {
   return <BadgeBase label={label} size={size} />;

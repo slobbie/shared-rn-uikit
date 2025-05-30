@@ -33,6 +33,7 @@ export const createSemanticTheme = (tokens: ThemeTokens) => {
         secondary: mergedColors.grey3 || colors.grey3,
         focus: mergedColors.primary || colors.primary,
         error: mergedVariant.error || variant.error,
+        success: mergedVariant.success || variant.success,
       },
     },
     typography: tokens.typography || typography,

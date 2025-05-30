@@ -17,10 +17,10 @@
 - [x] Avatar: 프로필 이미지/이니셜
 - [x] Badge: 상태 표시 (숫자, 점)
 - [x] Chip: Text
-- [ ] Progress: 진행 상태 표시 바
-- [ ] Checkbox: 체크박스
-- [ ] Radio: 라디오 버튼
-- [ ] Switch: 토글 스위치
+- [x] Progress: 진행 상태 표시 바
+- [x] Checkbox: 체크박스
+- [x] Radio: 라디오 버튼
+- [x] Switch: 토글 스위치
 - [ ] Slider: 값 선택 슬라이더
 - [ ] TextArea: 멀티라인 텍스트 입력
 - [ ] Toast: 간단한 알림 메시지

@@ -79,7 +79,7 @@ export const letterSpacing = {
 };
 
 /**
- * Material Design 2 기반 타이포그래피 토큰
+ * 타이포그래피 토큰
  */
 export const typography = {
   fontFamily,
@@ -89,7 +89,7 @@ export const typography = {
   letterSpacing,
 } as const;
 
-// Material Design 2의 타이포그래피 스타일 매핑
+/** 스타일 매핑 */
 export const materialTypographyStyles = {
   // Headline
   h1: {

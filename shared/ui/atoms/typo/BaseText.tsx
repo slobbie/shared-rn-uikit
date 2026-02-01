@@ -1,10 +1,15 @@
-import styled from '@emotion/native';
 import React from 'react';
-import { TextStyle } from 'react-native';
+import { Text, TextStyle } from 'react-native';
 
 import { IBaseTextProps } from '@shared/ui/atoms/typo/index.interface';
 import { useTheme } from '@shared/utils/lib/ThemeContext';
-import { materialTypographyStyles } from '@shared/utils/lib/themeToken/typoToken/typoToken';
+import {
+  fontSize as defaultFontSize,
+  fontWeight as defaultFontWeight,
+  letterSpacing as defaultLetterSpacing,
+  lineHeight as defaultLineHeight,
+  materialTypographyStyles,
+} from '@shared/utils/lib/themeToken/typoToken/typoToken';
 
 /**
  * 모든 텍스트 컴포넌트는 이 컴포넌트를 기반
@@ -23,42 +28,62 @@ const BaseText: React.FC<IBaseTextProps> = ({
 }) => {
   const { theme } = useTheme();
 
+  // 1. Material Design 스타일 정의 가져오기
   const materialStyle = materialTypographyStyles[variant] || {};
 
-  // 텍스트 스타일 생성
+  // 2. 테마 토큰 안전하게 추출
+  const themeTypo = theme?.typography || {};
+  const themeFontSize = themeTypo.fontSize || defaultFontSize;
+  const themeLineHeight = themeTypo.lineHeight || defaultLineHeight;
+  const themeFontWeight = themeTypo.fontWeight || defaultFontWeight;
+  const themeLetterSpacing = themeTypo.letterSpacing || defaultLetterSpacing;
+  const themeFontFamily = themeTypo.fontFamily || { regular: 'System' };
+
+  // 3. 폰트 크기 결정
+  const finalFontSize =
+    themeFontSize[materialStyle.fontSize as keyof typeof themeFontSize] ||
+    themeFontSize[variant as keyof typeof themeFontSize] ||
+    themeFontSize.body1;
+
+  // 4. 줄 간격 결정
+  const finalLineHeight =
+    themeLineHeight[materialStyle.lineHeight as keyof typeof themeLineHeight] ||
+    themeLineHeight[variant as keyof typeof themeLineHeight] ||
+    themeLineHeight.body1;
+
+  // 5. 폰트 두께 결정
+  const finalFontWeight = (
+    themeFontWeight[weight as keyof typeof themeFontWeight] ||
+    (materialStyle.fontWeight &&
+      themeFontWeight[
+        materialStyle.fontWeight as keyof typeof themeFontWeight
+      ]) ||
+    themeFontWeight.regular
+  ).toString() as TextStyle['fontWeight'];
+
+  // 6. 자간 결정
+  const finalLetterSpacing =
+    letterSpacing !== undefined
+      ? themeLetterSpacing[letterSpacing as keyof typeof themeLetterSpacing] ||
+        0
+      : themeLetterSpacing[
+          materialStyle.letterSpacing as keyof typeof themeLetterSpacing
+        ] ||
+        themeLetterSpacing[variant as keyof typeof themeLetterSpacing] ||
+        0;
+
+  // 7. 최종 스타일 객체 생성
   const textStyle: TextStyle = {
-    // 폰트 패밀리 (Material Design은 Roboto 사용)
-    fontFamily:
-      theme.typography.fontFamily[weight] ||
-      theme.typography.fontFamily.regular,
-
-    // Material Design 스타일 적용
-    fontSize:
-      theme.typography.fontSize[materialStyle.fontSize || variant] ||
-      theme.typography.fontSize.body1,
-    lineHeight:
-      theme.typography.lineHeight[materialStyle.lineHeight || variant] ||
-      theme.typography.lineHeight.body1,
-    fontWeight: (
-      theme.typography.fontWeight[weight] ||
-      materialStyle.fontWeight ||
-      theme.typography.fontWeight.regular
-    ).toString() as TextStyle['fontWeight'],
-    letterSpacing: letterSpacing
-      ? theme.typography.letterSpacing[
-          letterSpacing as keyof typeof theme.typography.letterSpacing
-        ]
-      : theme.typography.letterSpacing[
-          (materialStyle.letterSpacing as keyof typeof theme.typography.letterSpacing) ||
-            (variant as keyof typeof theme.typography.letterSpacing)
-        ] || 0,
-
-    // 텍스트 색상 (기본값: 테마의 텍스트 색상)
-    color: color || theme.colors.text.black,
+    fontFamily: themeFontFamily[weight] || themeFontFamily.regular,
+    fontSize: finalFontSize,
+    lineHeight: finalLineHeight,
+    fontWeight: finalFontWeight,
+    letterSpacing: finalLetterSpacing,
+    color: color || theme?.colors?.text?.black || '#242424',
   };
 
   return (
-    <StyledText
+    <Text
       style={[textStyle, style]}
       numberOfLines={numberOfLines}
       ellipsizeMode={ellipsizeMode}
@@ -66,10 +91,8 @@ const BaseText: React.FC<IBaseTextProps> = ({
       {...props}
     >
       {children}
-    </StyledText>
+    </Text>
   );
 };
-
-const StyledText = styled.Text``;
 
 export default React.memo(BaseText);

@@ -15,60 +15,60 @@ const TypoBase: React.FC<IBaseTextProps> = ({
 
 // Headline 컴포넌트들
 const H1: React.FC<IBaseTextProps> = (props) => (
-  <BaseText variant='h1' weight='regular' {...props} />
+  <BaseText {...props} variant='h1' />
 );
 
 const H2: React.FC<IBaseTextProps> = (props) => (
-  <BaseText variant='h2' weight='regular' {...props} />
+  <BaseText {...props} variant='h2' />
 );
 
 const H3: React.FC<IBaseTextProps> = (props) => (
-  <BaseText variant='h3' weight='regular' {...props} />
+  <BaseText {...props} variant='h3' />
 );
 
 const H4: React.FC<IBaseTextProps> = (props) => (
-  <BaseText variant='h4' weight='regular' {...props} />
+  <BaseText {...props} variant='h4' />
 );
 
 const H5: React.FC<IBaseTextProps> = (props) => (
-  <BaseText variant='h5' weight='regular' {...props} />
+  <BaseText {...props} variant='h5' />
 );
 
 const H6: React.FC<IBaseTextProps> = (props) => (
-  <BaseText variant='h6' weight='medium' {...props} />
+  <BaseText {...props} variant='h6' />
 );
 
 // Subtitle 컴포넌트들
 const Subtitle1: React.FC<IBaseTextProps> = (props) => (
-  <BaseText variant='subtitle1' weight='regular' {...props} />
+  <BaseText {...props} variant='subtitle1' />
 );
 
 const Subtitle2: React.FC<IBaseTextProps> = (props) => (
-  <BaseText variant='subtitle2' weight='medium' {...props} />
+  <BaseText {...props} variant='subtitle2' />
 );
 
 // Body 컴포넌트들
 const Body1: React.FC<IBaseTextProps> = (props) => (
-  <BaseText variant='body1' weight='regular' {...props} />
+  <BaseText {...props} variant='body1' />
 );
 
 const Body2: React.FC<IBaseTextProps> = (props) => (
-  <BaseText variant='body2' weight='regular' {...props} />
+  <BaseText {...props} variant='body2' />
 );
 
 // Button 컴포넌트
 const Button: React.FC<IBaseTextProps> = (props) => (
-  <BaseText variant='button' weight='medium' {...props} />
+  <BaseText {...props} variant='button' />
 );
 
 // Caption 컴포넌트
 const Caption: React.FC<IBaseTextProps> = (props) => (
-  <BaseText variant='caption' weight='regular' {...props} />
+  <BaseText {...props} variant='caption' />
 );
 
 // Overline 컴포넌트
 const Overline: React.FC<IBaseTextProps> = (props) => (
-  <BaseText variant='overline' weight='regular' {...props} />
+  <BaseText {...props} variant='overline' />
 );
 
 // 컴포넌트 합성

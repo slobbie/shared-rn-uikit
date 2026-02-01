@@ -9,6 +9,9 @@ import { useTheme } from '@shared/utils/lib/ThemeContext';
  */
 const TextInputBase = ({
   variant = 'default',
+  style,
+  disabled,
+  editable,
   placeholderColor = '#AAAEB6',
   ...props
 }: IBaseInputProps) => {
@@ -38,8 +41,19 @@ const TextInputBase = ({
 
   return (
     <TextInput
-      placeholderTextColor={placeholderColor}
-      style={[styles.base, styles[variant]]}
+      editable={disabled ? false : editable}
+      style={[
+        styles.base,
+        styles[variant],
+        style,
+        disabled && {
+          backgroundColor: theme.colors.background.secondary,
+          opacity: 0.5,
+        },
+      ]}
+      placeholderTextColor={
+        disabled ? theme.colors.text.disabled : placeholderColor
+      }
       {...props}
     />
   );

@@ -33,10 +33,17 @@ const BaseText: React.FC<IBaseTextProps> = ({
       theme.typography.fontFamily.regular,
 
     // Material Design 스타일 적용
-    fontSize: theme.typography.fontSize[materialStyle.fontSize || variant],
+    fontSize:
+      theme.typography.fontSize[materialStyle.fontSize || variant] ||
+      theme.typography.fontSize.body1,
     lineHeight:
-      theme.typography.lineHeight[materialStyle.lineHeight || variant],
-    fontWeight: materialStyle.fontWeight,
+      theme.typography.lineHeight[materialStyle.lineHeight || variant] ||
+      theme.typography.lineHeight.body1,
+    fontWeight: (
+      theme.typography.fontWeight[weight] ||
+      materialStyle.fontWeight ||
+      theme.typography.fontWeight.regular
+    ).toString() as TextStyle['fontWeight'],
     letterSpacing: letterSpacing
       ? theme.typography.letterSpacing[
           letterSpacing as keyof typeof theme.typography.letterSpacing
@@ -44,7 +51,7 @@ const BaseText: React.FC<IBaseTextProps> = ({
       : theme.typography.letterSpacing[
           (materialStyle.letterSpacing as keyof typeof theme.typography.letterSpacing) ||
             (variant as keyof typeof theme.typography.letterSpacing)
-        ],
+        ] || 0,
 
     // 텍스트 색상 (기본값: 테마의 텍스트 색상)
     color: color || theme.colors.text.black,

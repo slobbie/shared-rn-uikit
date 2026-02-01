@@ -29,6 +29,7 @@ export type ButtonColor = {
 export interface IBaseButtonProps extends RNPressableProps {
   variant?: ButtonVariant;
   color?: keyof ButtonColor;
+  textColor?: string;
   highlight?: Percentage;
   opacity?: Percentage;
   radius?: number;

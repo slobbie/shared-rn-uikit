@@ -3,6 +3,7 @@ import { TextInputProps } from 'react-native';
 export interface IBaseInputProps extends TextInputProps {
   variant?: 'default' | 'outlined' | 'underlined';
   placeholderColor?: string;
+  disabled?: boolean;
 }
 
 export type TextInputComponent = React.FC<IBaseInputProps> & {

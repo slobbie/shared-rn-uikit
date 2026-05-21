@@ -155,10 +155,10 @@ Success criteria:
 
 ## Suggested First Sprint Scope
 Use this as the most realistic first execution slice:
-- [ ] T2 coverage audit complete
+- [x] T2 coverage audit complete
 - [ ] T3 story rules documented and applied to initial targets
 - [ ] T4 preview decorators/providers normalized
-- [ ] T5 first batch of atom stories upgraded
+- [x] T5 first batch of atom stories upgraded
 - [ ] T9 first controls-driven playground stories added for selected atoms
 
 ## Completion Conditions
@@ -184,6 +184,9 @@ Use this as the most realistic first execution slice:
 
 ## Progress Log
 - 2026-05-21: Initial roadmap captured from approved Storybook improvement discussion.
+- 2026-05-21: `T2` coverage audit documented and committed.
+- 2026-05-21: `T5` atom story batch completed for `button`, `textInput`, `checkbox`, `divider`, `spacer`.
+- 2026-05-21: `T6` molecule coverage reached all 7 component folders with story files (`chip`, `badge`, `avatar`, `checkbox`, `radio`, `switch`, `progress`); visual/polish follow-up remains.
 
 ## Follow-up Files Likely Needed Later
 - coverage audit doc under `.agents/tasks/active/` or `.agents/tasks/backlog/`

@@ -14,23 +14,34 @@ const meta: Meta<typeof Checkbox> = {
     size: {
       control: 'select',
       options: ['small', 'medium', 'large'],
+      description: '체크박스 크기',
     },
-    label: { control: 'text' },
-    disabled: { control: 'boolean' },
+    label: {
+      control: 'text',
+      description: '라벨 텍스트',
+    },
+    disabled: {
+      control: 'boolean',
+      description: '비활성화 여부',
+    },
+    color: {
+      control: 'color',
+      description: '체크 상태 색상',
+    },
+  },
+  args: {
+    checked: false,
+    label: '동의합니다',
+    size: 'medium',
+    disabled: false,
+    color: '#007AFF',
   },
 };
 
 export default meta;
 type Story = StoryObj<typeof Checkbox>;
 
-export const Default: Story = {
-  args: {
-    checked: false,
-    label: '동의합니다',
-    size: 'medium',
-    disabled: false,
-  },
-};
+export const Default: Story = {};
 
 export const Sizes: Story = {
   args: {
@@ -45,18 +56,33 @@ export const Sizes: Story = {
   ),
 };
 
-export const CustomColor: Story = {
-  render: () => {
-    const [checked, setChecked] = useState(true);
+export const Interactive: Story = {
+  render: (args) => {
+    const [checked, setChecked] = useState(args.checked ?? true);
+
     return (
       <Checkbox
+        {...args}
         checked={checked}
         onValueChange={setChecked}
-        label='커스텀 색상'
-        color='#FF9500'
+        label='클릭해서 상태 변경'
       />
     );
   },
+};
+
+export const ColorStates: Story = {
+  args: {
+    checked: true,
+  },
+  render: (args) => (
+    <View style={{ gap: 16 }}>
+      <Checkbox {...args} label='Primary' color='#007AFF' />
+      <Checkbox {...args} label='Success' color='#34C759' />
+      <Checkbox {...args} label='Warning' color='#FF9500' />
+      <Checkbox {...args} label='Error' color='#FF3B30' />
+    </View>
+  ),
 };
 
 export const Disabled: Story = {

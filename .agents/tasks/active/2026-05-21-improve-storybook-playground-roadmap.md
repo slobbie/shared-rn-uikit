@@ -159,6 +159,7 @@ Use this as the most realistic first execution slice:
 - [ ] T3 story rules documented and applied to initial targets
 - [x] T4 preview decorators/providers normalized
 - [x] T5 first batch of atom stories upgraded
+- [x] T7 token/theme visibility added
 - [ ] T9 first controls-driven playground stories added for selected atoms
 
 ## Completion Conditions
@@ -188,6 +189,7 @@ Use this as the most realistic first execution slice:
 - 2026-05-21: `T5` atom story batch completed for `button`, `textInput`, `checkbox`, `divider`, `spacer`.
 - 2026-05-21: `T6` molecule coverage reached all 7 component folders with story files (`chip`, `badge`, `avatar`, `checkbox`, `radio`, `switch`, `progress`); visual/polish follow-up remains.
 - 2026-05-21: `T4` reusable preview wrappers added and representative stories (`Card`, `Container`, `Tooltip`, `Toast`, `Modal`) aligned.
+- 2026-05-21: `T7` token/theme visibility added via `stories/ThemeTokens.stories.tsx`, including base token swatches, semantic theme mapping, typography scale, and spacing preview.
 
 ## Follow-up Files Likely Needed Later
 - coverage audit doc under `.agents/tasks/active/` or `.agents/tasks/backlog/`

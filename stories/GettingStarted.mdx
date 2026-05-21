@@ -1,0 +1,42 @@
+import { Meta } from '@storybook/blocks';
+
+<Meta title='Docs/Getting Started' />
+
+# Getting Started
+
+## 처음 볼 때 추천 순서
+
+### 1. Foundations 먼저 보기
+- `Foundations/Theme Tokens`
+- color / semantic / typography / spacing 기준값을 먼저 확인합니다.
+
+### 2. 핵심 atom 확인
+우선순위가 높은 기본 컴포넌트부터 봅니다.
+- `Atoms/Button`
+- `Atoms/TextInput`
+- `Atoms/Checkbox`
+- `Atoms/Typo`
+
+### 3. composition story 확인
+shared UI가 실제로 어떻게 묶이는지 봅니다.
+- `Layout/Card`
+- `Layout/Container`
+- molecule stories 전반
+
+### 4. overlay 계열 확인
+preview wrapper가 필요한 story를 따로 확인합니다.
+- `Atoms/Tooltip`
+- `Atoms/Toast`
+- `Atoms/Modal`
+
+## 이 프로젝트에서 Storybook을 볼 때 기준
+- Storybook은 **preview/documentation layer** 입니다.
+- component API의 source of truth는 shared implementation입니다.
+- browser 편의를 위해 shared API를 왜곡하지 않습니다.
+- 반복 wrapper는 공용 preview helper로 흡수하는 방향을 우선합니다.
+
+## 지금 바로 체크하면 좋은 것
+- story가 핵심 state를 다 보여주는지
+- control이 실제로 유의미한 prop만 노출하는지
+- theme/token 영향이 story에서 읽히는지
+- component가 RN 전용 구현 디테일을 browser 문서에 과도하게 노출하지 않는지

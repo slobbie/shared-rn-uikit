@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import React from 'react';
 import { View, Text, Pressable } from 'react-native';
 
+import { StorybookContentWidth, StorybookSurface } from '../../../../.storybook/previewWrappers';
 import Card from '@shared/ui/layout/card';
 
 const meta: Meta<typeof Card> = {
@@ -30,7 +31,7 @@ export const Elevated: Story = {
     padding: 16,
   },
   render: (args) => (
-    <View style={{ width: 320 }}>
+    <StorybookContentWidth>
       <Card {...args}>
         <Card.Header title="카드 제목" subtitle="부제목입니다" />
         <Card.Content>
@@ -44,7 +45,7 @@ export const Elevated: Story = {
           </Pressable>
         </Card.Footer>
       </Card>
-    </View>
+    </StorybookContentWidth>
   ),
 };
 
@@ -54,14 +55,14 @@ export const Outlined: Story = {
     padding: 16,
   },
   render: (args) => (
-    <View style={{ width: 320 }}>
+    <StorybookContentWidth>
       <Card {...args}>
         <Card.Header title="Outlined Card" />
         <Card.Content>
           <Text style={{ color: '#374151' }}>테두리가 있는 카드 스타일입니다.</Text>
         </Card.Content>
       </Card>
-    </View>
+    </StorybookContentWidth>
   ),
 };
 
@@ -71,20 +72,20 @@ export const Filled: Story = {
     padding: 16,
   },
   render: (args) => (
-    <View style={{ width: 320 }}>
+    <StorybookContentWidth>
       <Card {...args}>
         <Card.Header title="Filled Card" />
         <Card.Content>
           <Text style={{ color: '#374151' }}>배경색이 채워진 카드 스타일입니다.</Text>
         </Card.Content>
       </Card>
-    </View>
+    </StorybookContentWidth>
   ),
 };
 
 export const Clickable: Story = {
   render: () => (
-    <View style={{ width: 320 }}>
+    <StorybookContentWidth>
       <Card
         variant="elevated"
         onPress={() => alert('Card clicked!')}
@@ -94,13 +95,13 @@ export const Clickable: Story = {
           <Text style={{ color: '#374151' }}>이 카드는 클릭할 수 있습니다.</Text>
         </Card.Content>
       </Card>
-    </View>
+    </StorybookContentWidth>
   ),
 };
 
 export const WithAvatar: Story = {
   render: () => (
-    <View style={{ width: 320 }}>
+    <StorybookSurface>
       <Card variant="elevated">
         <Card.Header
           title="사용자 이름"
@@ -117,6 +118,6 @@ export const WithAvatar: Story = {
           </Text>
         </Card.Content>
       </Card>
-    </View>
+    </StorybookSurface>
   ),
 };

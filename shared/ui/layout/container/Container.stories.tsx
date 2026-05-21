@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import React from 'react';
 import { View, Text } from 'react-native';
 
+import { StorybookSurface } from '../../../../.storybook/previewWrappers';
 import Container from '@shared/ui/layout/container';
 
 const meta: Meta<typeof Container> = {
@@ -31,15 +32,23 @@ const ContentBox = ({ label }: { label: string }) => (
   </View>
 );
 
+const ContainerCanvas = ({ children }: { children: React.ReactNode }) => (
+  <StorybookSurface width={360} backgroundColor='#F8FAFC'>
+    {children}
+  </StorybookSurface>
+);
+
 export const Default: Story = {
   args: {
     size: 'full',
     paddingHorizontal: 16,
   },
   render: (args) => (
-    <Container {...args}>
-      <ContentBox label="Full Width Container" />
-    </Container>
+    <ContainerCanvas>
+      <Container {...args}>
+        <ContentBox label="Full Width Container" />
+      </Container>
+    </ContainerCanvas>
   ),
 };
 
@@ -49,9 +58,11 @@ export const Small: Story = {
     centered: true,
   },
   render: (args) => (
-    <Container {...args}>
-      <ContentBox label="Small Container (540px)" />
-    </Container>
+    <ContainerCanvas>
+      <Container {...args}>
+        <ContentBox label="Small Container (540px)" />
+      </Container>
+    </ContainerCanvas>
   ),
 };
 
@@ -61,9 +72,11 @@ export const Medium: Story = {
     centered: true,
   },
   render: (args) => (
-    <Container {...args}>
-      <ContentBox label="Medium Container (720px)" />
-    </Container>
+    <ContainerCanvas>
+      <Container {...args}>
+        <ContentBox label="Medium Container (720px)" />
+      </Container>
+    </ContainerCanvas>
   ),
 };
 
@@ -73,9 +86,11 @@ export const Large: Story = {
     centered: true,
   },
   render: (args) => (
-    <Container {...args}>
-      <ContentBox label="Large Container (960px)" />
-    </Container>
+    <ContainerCanvas>
+      <Container {...args}>
+        <ContentBox label="Large Container (960px)" />
+      </Container>
+    </ContainerCanvas>
   ),
 };
 
@@ -86,8 +101,10 @@ export const WithPadding: Story = {
     padding: 24,
   },
   render: (args) => (
-    <Container {...args} style={{ backgroundColor: '#F3F4F6' }}>
-      <ContentBox label="Container with 24px padding" />
-    </Container>
+    <ContainerCanvas>
+      <Container {...args} style={{ backgroundColor: '#F3F4F6' }}>
+        <ContentBox label="Container with 24px padding" />
+      </Container>
+    </ContainerCanvas>
   ),
 };

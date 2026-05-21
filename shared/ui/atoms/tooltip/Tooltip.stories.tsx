@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import React from 'react';
 import { Text, View } from 'react-native';
 
+import { StorybookOverlayCanvas } from '../../../../.storybook/previewWrappers';
 import Tooltip from '@shared/ui/atoms/tooltip';
 
 const meta: Meta<typeof Tooltip> = {
@@ -28,7 +29,7 @@ export const Top: Story = {
     position: 'top',
   },
   render: (args) => (
-    <View style={{ padding: 100 }}>
+    <StorybookOverlayCanvas>
       <Tooltip {...args}>
         <View
           style={{ backgroundColor: '#3B82F6', padding: 12, borderRadius: 8 }}
@@ -36,7 +37,7 @@ export const Top: Story = {
           <Text style={{ color: 'white' }}>클릭해보세요</Text>
         </View>
       </Tooltip>
-    </View>
+    </StorybookOverlayCanvas>
   ),
 };
 
@@ -46,7 +47,7 @@ export const Bottom: Story = {
     position: 'bottom',
   },
   render: (args) => (
-    <View style={{ padding: 100 }}>
+    <StorybookOverlayCanvas>
       <Tooltip {...args}>
         <View
           style={{ backgroundColor: '#10B981', padding: 12, borderRadius: 8 }}
@@ -54,7 +55,7 @@ export const Bottom: Story = {
           <Text style={{ color: 'white' }}>클릭해보세요</Text>
         </View>
       </Tooltip>
-    </View>
+    </StorybookOverlayCanvas>
   ),
 };
 
@@ -64,7 +65,7 @@ export const Left: Story = {
     position: 'left',
   },
   render: (args) => (
-    <View style={{ padding: 100 }}>
+    <StorybookOverlayCanvas>
       <Tooltip {...args}>
         <View
           style={{ backgroundColor: '#F59E0B', padding: 12, borderRadius: 8 }}
@@ -72,7 +73,7 @@ export const Left: Story = {
           <Text style={{ color: 'white' }}>Left</Text>
         </View>
       </Tooltip>
-    </View>
+    </StorybookOverlayCanvas>
   ),
 };
 
@@ -82,7 +83,7 @@ export const Right: Story = {
     position: 'right',
   },
   render: (args) => (
-    <View style={{ padding: 100 }}>
+    <StorybookOverlayCanvas>
       <Tooltip {...args}>
         <View
           style={{ backgroundColor: '#EF4444', padding: 12, borderRadius: 8 }}
@@ -90,6 +91,6 @@ export const Right: Story = {
           <Text style={{ color: 'white' }}>Right</Text>
         </View>
       </Tooltip>
-    </View>
+    </StorybookOverlayCanvas>
   ),
 };

@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import React, { useState } from 'react';
 import { View, Pressable, Text } from 'react-native';
 
+import { StorybookOverlayCanvas } from '../../../../.storybook/previewWrappers';
 import Toast from '@shared/ui/atoms/toast';
 
 const meta: Meta<typeof Toast> = {
@@ -32,7 +33,7 @@ const ToastDemo = ({ type, position, message }: { type: 'info' | 'success' | 'wa
   const [visible, setVisible] = useState(false);
 
   return (
-    <View style={{ flex: 1, height: 400, justifyContent: 'center', alignItems: 'center' }}>
+    <StorybookOverlayCanvas>
       <Pressable
         onPress={() => setVisible(true)}
         style={{ backgroundColor: '#3B82F6', padding: 16, borderRadius: 8 }}
@@ -46,7 +47,7 @@ const ToastDemo = ({ type, position, message }: { type: 'info' | 'success' | 'wa
         position={position}
         onDismiss={() => setVisible(false)}
       />
-    </View>
+    </StorybookOverlayCanvas>
   );
 };
 

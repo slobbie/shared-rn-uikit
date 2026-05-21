@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import React, { useState } from 'react';
 import { View, Text, Pressable } from 'react-native';
 
+import { StorybookOverlayCanvas } from '../../../../.storybook/previewWrappers';
 import Modal from '@shared/ui/atoms/modal';
 
 const meta: Meta<typeof Modal> = {
@@ -28,7 +29,7 @@ const ModalDemo = ({ size, title }: { size: 'small' | 'medium' | 'large' | 'full
   const [visible, setVisible] = useState(false);
 
   return (
-    <View style={{ flex: 1, height: 500, justifyContent: 'center', alignItems: 'center' }}>
+    <StorybookOverlayCanvas height={500}>
       <Pressable
         onPress={() => setVisible(true)}
         style={{ backgroundColor: '#3B82F6', padding: 16, borderRadius: 8 }}
@@ -45,7 +46,7 @@ const ModalDemo = ({ size, title }: { size: 'small' | 'medium' | 'large' | 'full
           모달 콘텐츠가 여기에 표시됩니다. 다양한 크기와 옵션을 지원합니다.
         </Text>
       </Modal>
-    </View>
+    </StorybookOverlayCanvas>
   );
 };
 

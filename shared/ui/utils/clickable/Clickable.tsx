@@ -1,8 +1,11 @@
 import React, { useRef } from 'react';
 import {
   Pressable,
+  PressableStateCallbackType,
+  StyleProp,
   StyleSheet,
   View,
+  ViewStyle,
   Animated,
   GestureResponderEvent,
 } from 'react-native';
@@ -54,16 +57,15 @@ const Clickable: React.FC<IClickableProps> = ({
     }, debounceDelay);
   };
 
-  const getPressableStyle = (pressed: boolean) => {
-    const baseStyle = [styles.container, style];
+  const resolveStyle = (state: PressableStateCallbackType): StyleProp<ViewStyle> => {
+    const resolvedStyle =
+      typeof style === 'function' ? style(state) : style;
 
-    switch (feedback) {
-      case 'opacity':
-        return [...baseStyle, pressed && { opacity: activeOpacity }];
-      case 'none':
-      default:
-        return baseStyle;
-    }
+    return StyleSheet.flatten([
+      styles.container,
+      resolvedStyle,
+      feedback === 'opacity' && state.pressed ? { opacity: activeOpacity } : null,
+    ]);
   };
 
   const renderContent = (pressed: boolean) => {
@@ -91,7 +93,7 @@ const Clickable: React.FC<IClickableProps> = ({
           onPressIn={handlePressIn}
           onPressOut={handlePressOut}
           disabled={disabled}
-          style={[styles.container, style]}
+          style={resolveStyle}
           {...props}
         >
           {children}
@@ -104,7 +106,7 @@ const Clickable: React.FC<IClickableProps> = ({
     <Pressable
       onPress={handlePress}
       disabled={disabled}
-      style={({ pressed }) => getPressableStyle(pressed)}
+      style={resolveStyle}
       {...props}
     >
       {({ pressed }) => renderContent(pressed)}

@@ -39,6 +39,9 @@ yarn-error.*
 # Next.js
 .next/
 
+# fumadocs 생성물
+.source/
+
 app-example
 
 *storybook.log

@@ -1,0 +1,6 @@
+{
+  "title": "Engineering / CI",
+  "description": "개발 운영·CI 문서",
+  "root": true,
+  "pages": ["index", "testing", "docs-pipeline", "history"]
+}

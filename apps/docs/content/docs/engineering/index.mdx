@@ -1,0 +1,39 @@
+---
+title: Development
+description: 모노레포 구조, 실행 명령, 도구 체인
+---
+
+## 요구 사항
+
+- node 22, pnpm 10 (`workspace:*` 프로토콜 사용 — npm/yarn 불가)
+- `.npmrc`의 `node-linker=hoisted` — Expo/Metro 호환용
+
+## 워크스페이스 구조
+
+```text
+apps/
+└─ docs/               # Fumadocs 문서 포털
+examples/
+├─ native/             # Expo 예시 앱
+└─ web/                # Vite 예시 앱
+packages/
+└─ design-system/      # @package/design-system
+```
+
+## 명령어
+
+루트에서 실행합니다.
+
+| 명령 | 역할 |
+| --- | --- |
+| `pnpm install` | 전체 의존성 설치 |
+| `pnpm docs:dev` | 문서 포털 (localhost:3000) |
+| `pnpm docs:build` | 문서 포털 프로덕션 빌드 |
+| `pnpm docs:check` | 공개 API ↔ 문서 동기화 검사 |
+| `pnpm web` | 웹 예시 (localhost:5173) |
+| `pnpm native` | Expo 예시 |
+| `pnpm storybook` | 컴포넌트 스토리북 (UI 테스트 하네스) |
+| `pnpm test:ui` | 스토리북 인터랙션 테스트 (test-runner, 스토리북 6006 필요) |
+| `pnpm typecheck` | 전체 워크스페이스 타입체크 |
+
+주의: 루트 스크립트 이름에 `docs`, `repo`, `bugs` 같은 pnpm 예약어를 쓰면 npm 명령으로 위임되어 스크립트가 실행되지 않습니다. `docs:dev`처럼 콜론 네임스페이스를 사용하세요.

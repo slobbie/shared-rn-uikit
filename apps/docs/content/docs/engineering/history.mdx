@@ -1,0 +1,69 @@
+---
+title: History
+description: 작업 이력과 각 결정의 이유
+---
+
+## 전환 과정 요약
+
+RN 전용 단일 레포 → pnpm 모노레포 + 크로스플랫폼 디자인 시스템 + 문서 포털 + 테스트 하네스. 순서대로:
+
+### 1. 레거시 안정화
+
+- **Slider worklet 크래시 수정** — reanimated Gesture 콜백에서 일반 JS 클로저를 호출해 UI 스레드에서 죽는 버그. 계산 함수 3개에 `'worklet'` 지시자 추가.
+- 필요 이유: 마이그레이션 전에도 사용 중인 컴포넌트가 크래시하면 안 됨.
+
+### 2. pnpm 모노레포 전환
+
+- `pnpm-workspace.yaml` (apps/ examples/ packages/), `.npmrc`의 `node-linker=hoisted`.
+- 필요 이유: 웹·네이티브·문서가 같은 디자인 시스템 소스를 `workspace:*`로 공유해야 함. hoisted는 Expo/Metro가 심링크 store를 못 따라가는 문제 회피.
+
+### 3. @package/design-system 분리
+
+- conditional exports: `react-native` 조건 → `index.native.ts`, `browser`/`default` → `index.web.ts`. 두 진입점은 동일 계약.
+- 필요 이유: 소비자가 플랫폼 무관하게 `import { Button } from '@package/design-system'` 한 줄로 쓰게.
+
+### 4. 예시 앱 2개 + 동일 페이지
+
+- `examples/web`(Vite) + `examples/native`(Expo) — 같은 "프로필 설정" 화면을 양쪽에 구현.
+- 필요 이유: "같은 디자인"이 주장이 아니라 실행 가능한 증거가 되도록.
+
+### 5. 크로스플랫폼 마이그레이션 (21개)
+
+- 패턴: `X.types.ts`(계약) + `X.web.tsx`(순수 DOM+ARIA) + `X.native.tsx`(RN) + `core/` 공유 토큰.
+- Button 파일럿 → 6개(Typo, Avatar, Badge, Chip, Divider, Switch) → 12개(Checkbox, Radio, TextInput, TextArea, Spacer, Skeleton, ProgressBar, SegmentedControl, Slider, Modal, Tooltip, Toast) → organisms 2개(ProfileHeader, SettingRow — 예시 페이지에서 추출·승격).
+- 필요 이유: 웹에서 react-native-web 없이 순수 DOM으로 동작 + 치수·색의 단일 소스.
+
+### 6. 레거시 제거
+
+- `src/ui/`(atoms 18 + molecules 8, RN 전용) 삭제. 몰레큘의 라벨 조합형은 신규 컴포넌트의 `label` prop으로 흡수.
+- reanimated / gesture-handler / react-native-svg peer 의존 제거 (신규 Slider는 RN 내장 PanResponder).
+- 효과: 이중 구현 제거, 네이티브 번들 1110 → 970 모듈 (2.8 → 2.53 MB).
+- 필요 이유: 같은 컴포넌트가 두 벌이면 어느 쪽을 쓸지·고칠지 항상 모호해짐.
+
+### 7. 문서 포털 (Fumadocs)
+
+- `apps/docs` — 카테고리 셀렉트 박스(root folders)로 Design System / Hooks / Utilities / Engineering·CI 전환.
+- MDX 원본은 패키지 옆 `packages/design-system/docs/`, 포털에는 심링크로 편입 — 문서가 코드와 같은 PR에서 리뷰되도록.
+- `docs:check`: 공개 API의 컴포넌트마다 문서 존재 + **소스 분류와 문서 폴더 일치** 검사. 어기면 exit 1.
+- 필요 이유: 문서 포털 목표(Docs/package-documentation-portal-goal.md)의 "공개 API 변경 후 문서 없으면 실패" 조건 구현.
+
+### 8. 스토리북 → 테스트 하네스
+
+- 문서·데모는 Fumadocs가 담당 → 스토리북은 역할 재정의: play 함수 + test-runner로 인터랙션 테스트 20개.
+- 자세한 방식: [Testing](/docs/engineering/testing).
+- 필요 이유: 문서 도구 2개는 중복. 스토리는 격리 렌더 픽스처라 테스트 입력으로 재활용하는 편이 이득.
+
+## 결정 기록 (하지 않기로 한 것)
+
+- **core를 별도 패키지로 분리하지 않음** — 소비자가 design-system 하나뿐. 두 번째 소비자가 생기기 전 분리는 관리 비용만 추가. Hooks/Utilities 카테고리는 자리만 확보.
+- **fumadocs 16 미사용** — next 16 + react 19.2 요구라 RN(react 19.0.0)과 충돌. 15.x 유지, `files` 함수/배열 비호환은 `lib/source.ts`에서 언랩.
+- **organisms 선제 제작 안 함** — 화면에서 반복이 확인된 조합만 승격.
+
+## 운영 시 주의 (겪은 함정)
+
+| 함정 | 증상 | 대응 |
+| --- | --- | --- |
+| pnpm 예약어 스크립트 | `pnpm docs` → npm 페이지가 브라우저에 열림 | 루트 스크립트는 `docs:dev`처럼 콜론 네임스페이스 |
+| dev 서버 켠 채 prod 빌드 | `Cannot find module './vendor-chunks/...'` | `.next` 삭제 후 재시작. dev/build 동시 실행 금지 |
+| pnpm install 후 Metro | `Unable to resolve module ./node_modules/expo-router/entry.js` | `expo export --clear` / `expo start -c` |
+| test-runner 병렬 | `Execution context was destroyed` flake | `--maxWorkers 1` 고정 |

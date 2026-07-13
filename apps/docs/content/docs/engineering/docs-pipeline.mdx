@@ -1,0 +1,45 @@
+---
+title: Docs Pipeline
+description: docs:check 동작 원리와 CI 연동 계획
+---
+
+## docs:check
+
+`scripts/docs-check.mjs` — 패키지 공개 API와 문서의 동기화를 검사합니다.
+
+1. `packages/design-system/src/index.web.ts` / `index.native.ts`에서 `./components/` 경로의 컴포넌트 export 수집
+2. 각 컴포넌트에 대해 `packages/design-system/docs/components/<이름소문자>.mdx` 존재 확인
+3. 누락 시 목록 출력 후 exit 1 — 컴포넌트를 추가하면 문서도 함께 작성해야 통과
+
+```bash
+pnpm docs:check
+# [docs:check] @package/design-system: OK — 컴포넌트 7개 모두 문서 있음
+```
+
+## 문서 원본 위치
+
+패키지 문서의 원본은 패키지 옆 `docs/` 폴더입니다. 포털은 심링크로 이를 편입합니다.
+
+```text
+packages/design-system/docs/   # 원본 (패키지와 함께 리뷰·버전 관리)
+apps/docs/content/docs/design-system  →  위 폴더의 심링크
+```
+
+## CI 연동 (계획)
+
+git 저장소 전환 후 GitHub Actions로 연결합니다.
+
+```text
+PR
+ ├─ docs:check     # 공개 API 변경 시 문서 누락이면 실패
+ ├─ docs:build     # 문서 포털 빌드 검증
+ ├─ typecheck      # 전체 워크스페이스
+ └─ test:ui        # 스토리북 인터랙션 테스트 (build-storybook → 정적 서빙 → test-runner)
+
+main 머지
+ └─ docs:build → 배포 (Vercel 등)
+```
+
+## UI 테스트
+
+인터랙션 테스트 작동 방식·커버리지·작성 규칙은 [Testing](/docs/engineering/testing) 문서 참고.

@@ -1,0 +1,33 @@
+---
+title: SettingRow
+description: 제목·설명·스위치로 구성된 설정 행 — Typo + Switch 조합 organism
+---
+
+## 예제
+
+<SettingRowDemo />
+
+```tsx
+import { SettingRow } from '@package/design-system';
+
+<SettingRow
+  title="푸시 알림"
+  description="새 소식을 푸시로 받아요"
+  value={pushEnabled}
+  onChange={setPushEnabled}
+/>;
+```
+
+## Props
+
+| prop | 타입 | 기본값 | 설명 |
+| --- | --- | --- | --- |
+| `title` | `string` | — | 설정 제목 |
+| `description` | `string` | — | 보조 설명 (선택) |
+| `value` | `boolean` | — | 스위치 상태 |
+| `onChange` | `(next: boolean) => void` | — | 토글 핸들러 |
+| `disabled` | `boolean` | `false` | 비활성화 |
+
+## 접근성
+
+내부 Switch가 `title`을 접근성 레이블로 사용합니다 — `role="switch"` + `aria-checked` (Web), `accessibilityRole="switch"` (Native).

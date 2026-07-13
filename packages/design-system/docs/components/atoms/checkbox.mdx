@@ -1,0 +1,36 @@
+---
+title: Checkbox
+description: 체크/해제 선택 컨트롤
+---
+
+## 예제
+
+<CheckboxDemo />
+
+```tsx
+import { Checkbox } from '@package/design-system';
+
+<Checkbox
+  checked={agreed}
+  onChange={setAgreed}
+  label="이용약관 동의"
+  accessibilityLabel="이용약관 동의"
+/>;
+```
+
+## Props
+
+| prop | 타입 | 기본값 | 설명 |
+| --- | --- | --- | --- |
+| `checked` | `boolean` | — | 체크 상태 |
+| `onChange` | `(next: boolean) => void` | — | 토글 핸들러 |
+| `label` | `string` | — | 컨트롤 오른쪽 레이블 |
+| `disabled` | `boolean` | `false` | 비활성화 |
+| `accessibilityLabel` | `string` | — | 스크린리더 레이블 |
+
+박스 20×20 / 라운드 4 치수는 `core/tokens/selection.ts`의 `CHECKBOX` 공유.
+
+## 접근성
+
+- Web: `role="checkbox"` + `aria-checked`
+- Native: `accessibilityRole="checkbox"` + `accessibilityState={{ checked, disabled }}`

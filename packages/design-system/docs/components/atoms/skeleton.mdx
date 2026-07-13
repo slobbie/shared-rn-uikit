@@ -1,0 +1,34 @@
+---
+title: Skeleton
+description: 로딩 중 콘텐츠 자리 표시 펄스 박스
+---
+
+## 예제
+
+<SkeletonDemo />
+
+```tsx
+import { Skeleton } from '@package/design-system';
+
+<>
+  <Skeleton circle height={44} />
+  <Skeleton width="60%" height={16} />
+  <Skeleton height={16} />
+</>;
+```
+
+## Props
+
+| prop | 타입 | 기본값 | 설명 |
+| --- | --- | --- | --- |
+| `width` | `number \| string` | `'100%'` | 너비 (`circle`이면 `height`로 고정) |
+| `height` | `number` | `16` | 높이 |
+| `circle` | `boolean` | `false` | 원형 자리 표시 |
+
+배경 `grey5`, 모서리 반경은 `core/tokens/display.ts`의 `SKELETON` 공유.
+펄스는 web CSS keyframes / native `Animated.loop`(opacity 0.4↔1).
+
+## 접근성
+
+- Web: `aria-hidden` — 스크린리더에서 제외
+- Native: `accessibilityElementsHidden` — 로딩 상태는 상위 컨테이너에서 안내

@@ -1,0 +1,38 @@
+---
+title: Typo
+description: 타이포그래피 — h1~caption 6단계 스케일, weight/color 오버라이드
+---
+
+## 예제
+
+<TypoDemo />
+
+```tsx
+import { Typo } from '@package/design-system';
+
+<Typo variant="h3">김하늘</Typo>
+<Typo variant="caption" color="secondary">보조 설명</Typo>;
+```
+
+## 스케일
+
+`core/tokens/typography.ts`의 `TYPO_SCALE`을 양 플랫폼이 공유합니다.
+
+| variant | 크기/행간 | weight | Web 태그 |
+| --- | --- | --- | --- |
+| `h1` | 28/36 | bold | `<h1>` |
+| `h2` | 24/32 | bold | `<h2>` |
+| `h3` | 20/28 | semibold | `<h3>` |
+| `subtitle` | 17/24 | semibold | `<p>` |
+| `body` | 15/22 | regular | `<p>` |
+| `caption` | 13/18 | regular | `<span>` |
+
+## Props
+
+| prop | 타입 | 기본값 | 설명 |
+| --- | --- | --- | --- |
+| `variant` | `TypoVariant` | `'body'` | 스케일 선택 |
+| `weight` | `TypoWeight` | 스케일 기본값 | weight 오버라이드 |
+| `color` | `'default' \| 'secondary' \| 'inverse' \| 'primary'` | `'default'` | 시맨틱 색 |
+| `align` | `'left' \| 'center' \| 'right'` | — | 정렬 |
+| `numberOfLines` | `number` | — | 줄 수 제한 (Web은 line-clamp) |

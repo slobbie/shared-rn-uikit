@@ -1,0 +1,57 @@
+---
+title: Design System
+description: '@package/design-system — Web과 React Native가 같은 디자인을 공유하는 크로스플랫폼 컴포넌트 라이브러리'
+---
+
+## 개요
+
+`@package/design-system`은 하나의 계약(types)과 하나의 토큰(core)으로 Web(DOM)과 React Native 양쪽 컴포넌트를 제공합니다.
+
+- **공개 API 기준**: `src/index.web.ts` / `src/index.native.ts` — 두 진입점은 동일한 컴포넌트 계약을 export 합니다.
+- **플랫폼 분기**: 번들러가 `package.json`의 conditional exports로 자동 선택합니다. 소비자 코드는 플랫폼과 무관하게 같은 import를 사용합니다.
+
+```ts
+import { Button, Switch, Typo } from '@package/design-system';
+```
+
+## 설치
+
+모노레포 내부에서는 workspace 프로토콜로 사용합니다.
+
+```json
+{
+  "dependencies": {
+    "@package/design-system": "workspace:*"
+  }
+}
+```
+
+## 구조
+
+```text
+packages/design-system/src/
+├─ components/
+│  ├─ atoms/          # 단일 요소 (Button, Typo, Checkbox …)
+│  ├─ molecules/      # 아톰 조합 (TextInput, Modal …)
+│  └─ organisms/      # UI 블록 (ProfileHeader, SettingRow)
+├─ core/              # 플랫폼 중립 토큰·상태 로직 (치수, 타이포 스케일, 상태 계산)
+└─ utils/lib/         # 테마 (ThemeProvider, createTheme)
+```
+
+`components/`의 각 컴포넌트는 세 파일로 구성됩니다.
+
+| 파일 | 역할 |
+| --- | --- |
+| `X.types.ts` | Web/RN 공통 props 계약 |
+| `X.web.tsx` | 순수 DOM 구현 (react-native-web 미사용) |
+| `X.native.tsx` | React Native 구현 |
+
+치수·색·타이포 값은 전부 `core/`의 공유 상수에서 나오므로 두 플랫폼의 렌더 결과가 동일합니다.
+
+## 컴포넌트
+
+크로스플랫폼 컴포넌트 21개 — `src/components` 폴더 구조 그대로 아토믹 패턴(Atoms / Molecules / Organisms)으로 분류합니다.
+
+- **Atoms** (단일 요소 13): [Button](/docs/design-system/components/atoms/button) · [Typo](/docs/design-system/components/atoms/typo) · [Avatar](/docs/design-system/components/atoms/avatar) · [Badge](/docs/design-system/components/atoms/badge) · [Chip](/docs/design-system/components/atoms/chip) · [Divider](/docs/design-system/components/atoms/divider) · [Switch](/docs/design-system/components/atoms/switch) · [Checkbox](/docs/design-system/components/atoms/checkbox) · [Radio](/docs/design-system/components/atoms/radio) · [Slider](/docs/design-system/components/atoms/slider) · [ProgressBar](/docs/design-system/components/atoms/progressbar) · [Skeleton](/docs/design-system/components/atoms/skeleton) · [Spacer](/docs/design-system/components/atoms/spacer)
+- **Molecules** (조합형 6): [TextInput](/docs/design-system/components/molecules/textinput) · [TextArea](/docs/design-system/components/molecules/textarea) · [SegmentedControl](/docs/design-system/components/molecules/segmentedcontrol) · [Modal](/docs/design-system/components/molecules/modal) · [Tooltip](/docs/design-system/components/molecules/tooltip) · [Toast](/docs/design-system/components/molecules/toast)
+- **Organisms** (UI 블록 2): [ProfileHeader](/docs/design-system/components/organisms/profileheader) · [SettingRow](/docs/design-system/components/organisms/settingrow)

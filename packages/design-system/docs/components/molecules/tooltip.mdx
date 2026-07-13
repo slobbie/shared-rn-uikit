@@ -1,0 +1,31 @@
+---
+title: Tooltip
+description: 트리거 위에 짧은 설명 말풍선 표시
+---
+
+## 예제
+
+<TooltipDemo />
+
+```tsx
+import { Tooltip } from '@package/design-system';
+
+<Tooltip content="설정 열기">
+  <Button size="sm">설정</Button>
+</Tooltip>;
+```
+
+## Props
+
+| prop | 타입 | 기본값 | 설명 |
+| --- | --- | --- | --- |
+| `content` | `string` | — | 말풍선 텍스트 |
+| `children` | `ReactNode` | — | 트리거 요소 |
+
+비제어(uncontrolled) 컴포넌트 — Web은 hover/focus, Native는 탭 토글로 표시.
+말풍선 padding 6×10 / fontSize 12 치수는 `core/tokens/overlay.ts`의 `TOOLTIP` 공유.
+
+## 접근성
+
+- Web: 말풍선에 `role="tooltip"`, 트리거 focus/blur에도 반응
+- Native: Pressable 탭으로 토글 — 스크린리더 사용자도 열람 가능

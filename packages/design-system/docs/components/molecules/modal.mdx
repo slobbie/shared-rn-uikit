@@ -1,0 +1,32 @@
+---
+title: Modal
+description: 백드롭 위 중앙 카드 형태의 모달 다이얼로그
+---
+
+## 예제
+
+<ModalDemo />
+
+```tsx
+import { Modal } from '@package/design-system';
+
+<Modal visible={open} onClose={() => setOpen(false)} title="알림">
+  <Typo>저장하시겠습니까?</Typo>
+</Modal>;
+```
+
+## Props
+
+| prop | 타입 | 기본값 | 설명 |
+| --- | --- | --- | --- |
+| `visible` | `boolean` | — | 표시 여부 |
+| `onClose` | `() => void` | — | 닫기 핸들러 (백드롭 클릭 / ESC) |
+| `title` | `string` | — | 상단 제목 |
+| `children` | `ReactNode` | — | 본문 내용 |
+
+카드 radius 16 / padding 24 / maxWidth 400 치수는 `core/tokens/overlay.ts`의 `MODAL` 공유.
+
+## 접근성
+
+- Web: `role="dialog"` + `aria-modal="true"`, ESC 키로 닫기
+- Native: RN `Modal`의 `onRequestClose`로 안드로이드 뒤로가기 대응

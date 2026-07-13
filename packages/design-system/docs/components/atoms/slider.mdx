@@ -1,0 +1,40 @@
+---
+title: Slider
+description: 범위 내 값을 드래그로 선택하는 슬라이더
+---
+
+## 예제
+
+<SliderDemo />
+
+```tsx
+import { Slider } from '@package/design-system';
+
+<Slider
+  value={volume}
+  onChange={setVolume}
+  min={0}
+  max={100}
+  step={1}
+  accessibilityLabel="볼륨"
+/>;
+```
+
+## Props
+
+| prop | 타입 | 기본값 | 설명 |
+| --- | --- | --- | --- |
+| `value` | `number` | — | 현재 값 |
+| `onChange` | `(next: number) => void` | — | 값 변경 핸들러 |
+| `min` | `number` | `0` | 최솟값 |
+| `max` | `number` | `100` | 최댓값 |
+| `step` | `number` | `1` | 스냅 단위 |
+| `disabled` | `boolean` | `false` | 비활성화 |
+| `accessibilityLabel` | `string` | — | 스크린리더 레이블 |
+
+트랙 4 / 썸 20 치수는 `core/tokens/overlay.ts`의 `SLIDER` 공유.
+
+## 접근성
+
+- Web: 네이티브 `<input type="range">` — 키보드 화살표 조작 기본 지원
+- Native: `accessibilityRole="adjustable"` + `accessibilityValue={{ min, max, now }}`

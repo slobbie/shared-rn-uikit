@@ -1,0 +1,38 @@
+---
+title: Toast
+description: 하단 중앙에 잠시 표시되는 알림 메시지
+---
+
+## 예제
+
+<ToastDemo />
+
+```tsx
+import { Toast } from '@package/design-system';
+
+<Toast
+  visible={toastVisible}
+  message="저장되었습니다"
+  variant="success"
+  duration={3000}
+  onHide={() => setToastVisible(false)}
+/>;
+```
+
+## Props
+
+| prop | 타입 | 기본값 | 설명 |
+| --- | --- | --- | --- |
+| `visible` | `boolean` | — | 표시 여부 (제어형) |
+| `message` | `string` | — | 알림 텍스트 |
+| `variant` | `'info' \| 'success' \| 'error'` | `'info'` | 색상 변형 |
+| `duration` | `number` | `3000` | 자동 숨김 ms (`0`이면 유지) |
+| `onHide` | `() => void` | — | 숨김 핸들러 (타이머 만료 시 호출) |
+
+padding 12×16 / radius 10 치수는 `core/tokens/overlay.ts`의 `TOAST` 공유.
+Native는 가장 가까운 화면 컨테이너 기준 절대 배치 — 화면 루트 근처에 렌더링 권장.
+
+## 접근성
+
+- Web: `role="status"` + `aria-live="polite"` — 스크린리더가 자동 낭독
+- Native: `accessibilityRole="alert"` + `accessibilityLiveRegion="polite"`

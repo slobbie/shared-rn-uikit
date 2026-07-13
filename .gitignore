@@ -36,7 +36,14 @@ yarn-error.*
 # typescript
 *.tsbuildinfo
 
+# Next.js
+.next/
+
 app-example
 
 *storybook.log
 storybook-static
+
+.agents
+.tmp
+.docs

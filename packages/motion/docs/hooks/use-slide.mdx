@@ -1,0 +1,20 @@
+---
+title: useSlide
+description: Slide 효과의 레이아웃을 직접 구성할 때 사용하는 훅
+---
+
+```tsx
+import { MotionBox, useSlide } from '@package/motion';
+
+const motion = useSlide({
+  visible,
+  from: 'left',
+  distance: 16,
+  fade: true,
+});
+
+return <MotionBox motion={motion}>{children}</MotionBox>;
+```
+
+훅의 반환값은 그대로 `MotionBox`의 `motion`에 전달하세요.
+일반적인 이동 효과에는 `Slide` 컴포넌트를 사용하는 편이 간단합니다.

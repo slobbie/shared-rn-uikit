@@ -1,0 +1,36 @@
+---
+title: Typo
+description: 제목과 본문에 일관된 글자 스타일을 적용합니다
+---
+
+## 예제
+
+<TypoDemo />
+
+```tsx
+import { Typo } from '@package/design-system';
+
+<Typo variant="h3">홍길동</Typo>
+<Typo variant="caption" color="secondary">보조 설명</Typo>
+```
+
+## 스케일
+
+| 스타일 | 글자 크기/줄 높이 | 굵기 | 웹 요소 |
+| --- | --- | --- | --- |
+| `h1` | 28/36 | bold | `<h1>` |
+| `h2` | 24/32 | bold | `<h2>` |
+| `h3` | 20/28 | semibold | `<h3>` |
+| `subtitle` | 17/24 | semibold | `<p>` |
+| `body` | 15/22 | regular | `<p>` |
+| `caption` | 13/18 | regular | `<span>` |
+
+## Props
+
+| prop | 타입 | 기본값 | 설명 |
+| --- | --- | --- | --- |
+| `variant` | `TypoVariant` | `'body'` | 글자 스타일 |
+| `weight` | `TypoWeight` | 스타일 기본값 | 글자 굵기 |
+| `color` | `'default' \| 'secondary' \| 'inverse' \| 'primary'` | `'default'` | 글자 색상 |
+| `align` | `'left' \| 'center' \| 'right'` | — | 정렬 |
+| `numberOfLines` | `number` | — | 표시할 최대 줄 수 |

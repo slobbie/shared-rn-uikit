@@ -1,0 +1,38 @@
+---
+title: Toast
+description: 하단 중앙에 잠시 표시되는 알림 메시지
+---
+
+## 예제
+
+<ToastDemo />
+
+```tsx
+import { Toast } from '@package/design-system';
+
+<Toast
+  visible={toastVisible}
+  message="저장되었습니다"
+  variant="success"
+  duration={3000}
+  onHide={() => setToastVisible(false)}
+/>
+```
+
+## Props
+
+| prop | 타입 | 기본값 | 설명 |
+| --- | --- | --- | --- |
+| `visible` | `boolean` | — | 표시 여부 |
+| `message` | `string` | — | 알림 텍스트 |
+| `variant` | `'info' \| 'success' \| 'error'` | `'info'` | 알림 종류 |
+| `duration` | `number` | `3000` | 자동으로 사라질 때까지의 시간(ms). `0`이면 계속 표시합니다. |
+| `onHide` | `() => void` | — | 알림이 사라질 때 실행할 함수 |
+
+React Native에서는 현재 화면을 기준으로 위치를 잡을 수 있도록 화면의 최상단에 가깝게
+렌더링하세요.
+
+## 접근성
+
+- Web: `role="status"` + `aria-live="polite"` — 스크린리더가 자동 낭독
+- Native: `accessibilityRole="alert"` + `accessibilityLiveRegion="polite"`

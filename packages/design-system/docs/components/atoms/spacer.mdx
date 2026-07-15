@@ -1,0 +1,28 @@
+---
+title: Spacer
+description: 요소 사이 여백을 만드는 빈 박스
+---
+
+## 예제
+
+<SpacerDemo />
+
+```tsx
+import { Spacer } from '@package/design-system';
+
+<>
+  <Card />
+  <Spacer size={16} />
+  <Card />
+  <Spacer size={12} horizontal />
+</>
+```
+
+## Props
+
+| prop | 타입 | 기본값 | 설명 |
+| --- | --- | --- | --- |
+| `size` | `number` | `8` | 간격의 크기 |
+| `horizontal` | `boolean` | `false` | `true`면 세로 대신 가로 간격 |
+
+Flex 레이아웃에서도 지정한 간격을 유지합니다.

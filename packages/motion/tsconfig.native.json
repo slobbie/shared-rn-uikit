@@ -1,0 +1,14 @@
+{
+  "extends": "./tsconfig.base.json",
+  "compilerOptions": {
+    "lib": ["ES2020"]
+  },
+  "include": [
+    "src/**/*.types.ts",
+    "src/**/*.native.ts",
+    "src/**/*.native.tsx",
+    "src/core/motion.types.ts",
+    "src/core/useMotionPresence.ts",
+    "src/core/tokens.ts"
+  ]
+}

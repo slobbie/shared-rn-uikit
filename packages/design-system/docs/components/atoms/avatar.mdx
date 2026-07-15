@@ -1,0 +1,30 @@
+---
+title: Avatar
+description: 이미지나 이름의 첫 글자로 프로필을 표시합니다
+---
+
+## 예제
+
+<AvatarDemo />
+
+```tsx
+import { Avatar } from '@package/design-system';
+
+<Avatar size="lg" name="홍길동" />
+```
+
+이미지가 없으면 이름으로 이니셜을 만듭니다. 영문 이름은 앞 두 글자를 대문자로,
+한글 이름은 첫 글자를 표시합니다.
+
+## 크기
+
+| 크기 | 지름 | 글자 크기 |
+| --- | --- | --- |
+| `sm` | 32 | 13 |
+| `md` | 44 | 16 |
+| `lg` | 64 | 24 |
+
+## 접근성
+
+- Web: `role="img"` + `aria-label`
+- Native: `accessibilityRole="image"` + `accessibilityLabel`

@@ -1,0 +1,6 @@
+{
+  "title": "Motion",
+  "description": "크로스플랫폼 등장·퇴장 애니메이션",
+  "root": true,
+  "pages": ["index", "components", "hooks"]
+}

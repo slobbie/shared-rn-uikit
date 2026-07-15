@@ -1,0 +1,41 @@
+---
+title: TextArea
+description: 여러 줄 텍스트 입력 필드
+---
+
+## 예제
+
+<TextAreaDemo />
+
+```tsx
+import { TextArea } from '@package/design-system';
+
+<TextArea
+  value={memo}
+  onChangeText={setMemo}
+  label="메모"
+  placeholder="내용을 입력하세요"
+  numberOfLines={4}
+  helperText="최대 500자"
+  accessibilityLabel="메모 입력"
+/>
+```
+
+## Props
+
+| prop | 타입 | 기본값 | 설명 |
+| --- | --- | --- | --- |
+| `value` | `string` | — | 현재 입력값 |
+| `onChangeText` | `(text: string) => void` | — | 입력값이 바뀔 때 실행할 함수 |
+| `placeholder` | `string` | — | 플레이스홀더 |
+| `label` | `string` | — | 필드 상단 레이블 |
+| `helperText` | `string` | — | 필드 하단 보조 텍스트 |
+| `error` | `boolean` | `false` | 오류 스타일을 표시할지 여부 |
+| `disabled` | `boolean` | `false` | 비활성화 |
+| `numberOfLines` | `number` | `4` | 기본으로 표시할 줄 수 |
+| `accessibilityLabel` | `string` | — | 스크린리더 레이블 |
+
+## 접근성
+
+- Web: `<label htmlFor>`로 레이블 연결, 에러 시 `aria-invalid`
+- Native: `accessibilityLabel` + `accessibilityState={{ disabled }}`

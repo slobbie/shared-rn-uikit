@@ -1,0 +1,32 @@
+---
+title: Switch
+description: 설정을 켜거나 끕니다
+---
+
+## 예제
+
+<SwitchDemo />
+
+```tsx
+import { Switch } from '@package/design-system';
+
+<Switch
+  value={pushEnabled}
+  onChange={setPushEnabled}
+  accessibilityLabel="푸시 알림"
+/>
+```
+
+## Props
+
+| prop | 타입 | 기본값 | 설명 |
+| --- | --- | --- | --- |
+| `value` | `boolean` | — | 현재 상태 |
+| `onChange` | `(next: boolean) => void` | — | 상태가 바뀔 때 실행할 함수 |
+| `disabled` | `boolean` | `false` | 비활성화 |
+| `accessibilityLabel` | `string` | — | 스크린리더 레이블 |
+
+## 접근성
+
+- Web: `role="switch"` + `aria-checked`
+- Native: `accessibilityRole="switch"` + `accessibilityState={{ checked }}`

@@ -1,0 +1,65 @@
+{
+  "name": "@package/design-system",
+  "version": "0.1.0",
+  "private": true,
+  "main": "./src/index.web.ts",
+  "react-native": "./src/index.native.ts",
+  "types": "./src/index.web.ts",
+  "exports": {
+    ".": {
+      "react-native": "./src/index.native.ts",
+      "browser": "./src/index.web.ts",
+      "default": "./src/index.web.ts"
+    }
+  },
+  "scripts": {
+    "storybook": "STORYBOOK=true storybook dev -p 6006",
+    "build-storybook": "STORYBOOK=true storybook build",
+    "test-storybook": "test-storybook --maxWorkers 1",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@package/motion": "workspace:*"
+  },
+  "peerDependencies": {
+    "react": ">=18",
+    "react-native": ">=0.74"
+  },
+  "peerDependenciesMeta": {
+    "react-native": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "@babel/core": "^7.28.6",
+    "@babel/preset-env": "^7.28.6",
+    "@babel/preset-react": "^7.28.5",
+    "@babel/preset-typescript": "^7.28.5",
+    "@storybook/addon-a11y": "8.6.14",
+    "@storybook/addon-docs": "8.6.14",
+    "@storybook/addon-essentials": "8.6.14",
+    "@storybook/addon-interactions": "8.6.14",
+    "@storybook/addon-links": "8.6.14",
+    "@storybook/addon-react-native-web": "^0.0.29",
+    "@storybook/addon-webpack5-compiler-swc": "^1.0.6",
+    "@storybook/blocks": "8.6.14",
+    "@storybook/react": "8.6.14",
+    "@storybook/react-webpack5": "8.6.14",
+    "@storybook/test": "8.6.14",
+    "@storybook/test-runner": "0.19.1",
+    "@types/react": "~19.0.10",
+    "@types/react-dom": "~19.0.4",
+    "babel-loader": "^10.0.0",
+    "babel-plugin-module-resolver": "^5.0.2",
+    "babel-plugin-react-native-web": "^0.21.2",
+    "http-server": "^14.1.1",
+    "motion": "^12.42.2",
+    "react": "19.0.0",
+    "react-dom": "19.0.0",
+    "react-native": "0.79.2",
+    "react-native-web": "~0.20.0",
+    "storybook": "8.6.14",
+    "typescript": "~5.8.3",
+    "webpack": "^5.104.1"
+  }
+}

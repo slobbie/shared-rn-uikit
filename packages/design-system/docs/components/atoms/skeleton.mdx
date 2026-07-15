@@ -1,0 +1,31 @@
+---
+title: Skeleton
+description: 콘텐츠를 불러오는 동안 자리 표시 영역을 보여줍니다
+---
+
+## 예제
+
+<SkeletonDemo />
+
+```tsx
+import { Skeleton } from '@package/design-system';
+
+<>
+  <Skeleton circle height={44} />
+  <Skeleton width="60%" height={16} />
+  <Skeleton height={16} />
+</>
+```
+
+## Props
+
+| prop | 타입 | 기본값 | 설명 |
+| --- | --- | --- | --- |
+| `width` | `number \| string` | `'100%'` | 너비. 원형일 때는 높이와 같아집니다. |
+| `height` | `number` | `16` | 높이 |
+| `circle` | `boolean` | `false` | 원형 자리 표시 |
+
+## 접근성
+
+- Web: `aria-hidden` — 스크린리더에서 제외
+- Native: `accessibilityElementsHidden` — 로딩 상태는 상위 컨테이너에서 안내

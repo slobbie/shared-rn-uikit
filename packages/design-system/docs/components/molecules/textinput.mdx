@@ -1,0 +1,42 @@
+---
+title: TextInput
+description: 한 줄 텍스트 입력 필드
+---
+
+## 예제
+
+<TextInputDemo />
+
+```tsx
+import { TextInput } from '@package/design-system';
+
+<TextInput
+  value={email}
+  onChangeText={setEmail}
+  label="이메일"
+  placeholder="you@example.com"
+  keyboardType="email-address"
+  helperText="회사 이메일을 입력하세요"
+  accessibilityLabel="이메일 입력"
+/>
+```
+
+## Props
+
+| prop | 타입 | 기본값 | 설명 |
+| --- | --- | --- | --- |
+| `value` | `string` | — | 현재 입력값 |
+| `onChangeText` | `(text: string) => void` | — | 입력값이 바뀔 때 실행할 함수 |
+| `placeholder` | `string` | — | 플레이스홀더 |
+| `label` | `string` | — | 필드 상단 레이블 |
+| `helperText` | `string` | — | 필드 하단 보조 텍스트 |
+| `error` | `boolean` | `false` | 오류 스타일을 표시할지 여부 |
+| `disabled` | `boolean` | `false` | 비활성화 |
+| `secureTextEntry` | `boolean` | `false` | 입력값을 가릴지 여부 |
+| `keyboardType` | `'default' \| 'email-address' \| 'numeric'` | `'default'` | 입력 내용에 맞는 키보드 종류 |
+| `accessibilityLabel` | `string` | — | 스크린리더 레이블 |
+
+## 접근성
+
+- Web: `<label htmlFor>`로 레이블 연결, 에러 시 `aria-invalid`
+- Native: `accessibilityLabel` + `accessibilityState={{ disabled }}`

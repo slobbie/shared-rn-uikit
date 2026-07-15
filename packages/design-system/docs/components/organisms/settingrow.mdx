@@ -1,0 +1,33 @@
+---
+title: SettingRow
+description: 설정 이름과 설명, 스위치를 한 줄에 배치합니다
+---
+
+## 예제
+
+<SettingRowDemo />
+
+```tsx
+import { SettingRow } from '@package/design-system';
+
+<SettingRow
+  title="푸시 알림"
+  description="새 소식을 푸시 알림으로 받습니다."
+  value={pushEnabled}
+  onChange={setPushEnabled}
+/>
+```
+
+## Props
+
+| prop | 타입 | 기본값 | 설명 |
+| --- | --- | --- | --- |
+| `title` | `string` | — | 설정 제목 |
+| `description` | `string` | — | 보조 설명 (선택) |
+| `value` | `boolean` | — | 스위치 상태 |
+| `onChange` | `(next: boolean) => void` | — | 상태가 바뀔 때 실행할 함수 |
+| `disabled` | `boolean` | `false` | 비활성화 |
+
+## 접근성
+
+화면 읽기 도구는 `title`을 스위치의 이름으로 안내합니다.

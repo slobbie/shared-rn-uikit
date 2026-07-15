@@ -1,0 +1,18 @@
+{
+  "title": "Atoms",
+  "pages": [
+    "button",
+    "typo",
+    "avatar",
+    "badge",
+    "chip",
+    "divider",
+    "switch",
+    "checkbox",
+    "radio",
+    "slider",
+    "progressbar",
+    "skeleton",
+    "spacer"
+  ]
+}

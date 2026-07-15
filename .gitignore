@@ -36,7 +36,18 @@ yarn-error.*
 # typescript
 *.tsbuildinfo
 
+# Next.js
+.next/
+apps/docs/out/
+
+# fumadocs 생성물
+.source/
+
 app-example
 
 *storybook.log
 storybook-static
+
+.agents
+.tmp
+.docs

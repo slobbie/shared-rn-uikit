@@ -1,0 +1,22 @@
+---
+title: ProfileHeader
+description: 아바타와 사용자 정보를 한 줄에 표시합니다
+---
+
+## 예제
+
+<ProfileHeaderDemo />
+
+```tsx
+import { ProfileHeader } from '@package/design-system';
+
+<ProfileHeader name="홍길동" email="gildong.hong@example.com" badgeLabel="PRO" />
+```
+
+## Props
+
+| prop | 타입 | 기본값 | 설명 |
+| --- | --- | --- | --- |
+| `name` | `string` | — | 사용자 이름. 아바타의 이니셜에도 사용합니다. |
+| `email` | `string` | — | 보조 텍스트 (선택) |
+| `badgeLabel` | `string` | — | 이름 옆에 표시할 배지 문구 |

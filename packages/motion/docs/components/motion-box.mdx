@@ -1,0 +1,24 @@
+---
+title: MotionBox
+description: 애니메이션 훅과 레이아웃을 연결하는 컴포넌트
+---
+
+`Fade`, `Slide`, `Scale`을 사용할 때는 `MotionBox`를 따로 감쌀 필요가 없습니다.
+애니메이션 훅을 사용하면서 영역의 크기나 스타일을 직접 지정할 때만 사용하세요.
+
+```tsx
+const motion = useSlide({ visible, from: 'bottom' });
+
+return (
+  <MotionBox motion={motion} sizing="intrinsic">
+    <Content />
+  </MotionBox>
+);
+```
+
+| prop | 설명 |
+| --- | --- |
+| `motion` | `useFade`, `useSlide`, `useScale`의 반환값을 전달합니다. |
+| `sizing="intrinsic"` | 자식 크기만큼 영역을 차지합니다. |
+| `sizing="fill"` | 부모 너비를 채웁니다. |
+| `layoutStyle` | 애니메이션과 무관한 레이아웃 스타일을 지정합니다. |

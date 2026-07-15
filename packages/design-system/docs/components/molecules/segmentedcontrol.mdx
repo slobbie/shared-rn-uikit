@@ -1,0 +1,32 @@
+---
+title: SegmentedControl
+description: 나란히 배치된 여러 항목 중 하나를 선택합니다
+---
+
+## 예제
+
+<SegmentedControlDemo />
+
+```tsx
+import { SegmentedControl } from '@package/design-system';
+
+<SegmentedControl
+  options={['전체', '진행중', '완료']}
+  value={filter}
+  onChange={setFilter}
+/>
+```
+
+## Props
+
+| prop | 타입 | 기본값 | 설명 |
+| --- | --- | --- | --- |
+| `options` | `string[]` | — | 세그먼트 라벨 목록 |
+| `value` | `string` | — | 선택된 라벨 |
+| `onChange` | `(next: string) => void` | — | 선택한 항목이 바뀔 때 실행할 함수 |
+| `disabled` | `boolean` | `false` | 비활성화 |
+
+## 접근성
+
+- Web: 컨테이너 `role="tablist"`, 항목 `role="tab"` + `aria-selected`
+- Native: RN에 `tab` 롤이 없어 `accessibilityRole="button"` + `accessibilityState={{ selected }}`

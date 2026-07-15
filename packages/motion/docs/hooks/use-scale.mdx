@@ -1,0 +1,15 @@
+---
+title: useScale
+description: Scale 효과의 레이아웃을 직접 구성할 때 사용하는 훅
+---
+
+```tsx
+import { MotionBox, useScale } from '@package/motion';
+
+const motion = useScale({ visible, from: 0.92 });
+
+return <MotionBox motion={motion}>{children}</MotionBox>;
+```
+
+훅의 반환값은 그대로 `MotionBox`의 `motion`에 전달하세요.
+일반적인 크기 전환에는 `Scale` 컴포넌트를 사용하는 편이 간단합니다.

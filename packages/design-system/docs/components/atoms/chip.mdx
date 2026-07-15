@@ -1,6 +1,6 @@
 ---
 title: Chip
-description: 선택 가능한 칩 — 토글 선택 상태 지원
+description: 짧은 옵션이나 필터를 선택합니다
 ---
 
 ## 예제
@@ -16,7 +16,7 @@ import { Chip } from '@package/design-system';
   label="React"
   selected={selected.includes('React')}
   onPress={() => toggle('React')}
-/>;
+/>
 ```
 
 ## Props
@@ -24,8 +24,8 @@ import { Chip } from '@package/design-system';
 | prop | 타입 | 기본값 | 설명 |
 | --- | --- | --- | --- |
 | `label` | `string` | — | 칩 텍스트 |
-| `selected` | `boolean` | `false` | 선택 상태 (채워진 스타일) |
-| `onPress` | `() => void` | — | 토글 핸들러 |
+| `selected` | `boolean` | `false` | 선택 여부 |
+| `onPress` | `() => void` | — | 칩을 눌렀을 때 실행할 함수 |
 | `disabled` | `boolean` | `false` | 비활성화 |
 
 ## 접근성

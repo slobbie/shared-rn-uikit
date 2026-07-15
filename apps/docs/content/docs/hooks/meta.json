@@ -1,6 +1,0 @@
-{
-  "title": "Hooks",
-  "description": "공용 React 훅",
-  "root": true,
-  "pages": ["index"]
-}

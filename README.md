@@ -1,124 +1,135 @@
-# Shared React Native UI Kit
+# Shared RN UIKit
 
-🍎 **[Live Storybook](https://slobbie.github.io/shared-rn-uikit/)**
+🍎 **[Live Docs](https://slobbie.github.io/shared-rn-uikit/)**
 
-React Native 재사용 가능한 UI 컴포넌트 라이브러리입니다. Atomic Design 패턴을 따르며, TypeScript로 완전히 타입화되어 있습니다.
+웹과 React Native에서 같은 API로 사용할 수 있는 디자인 시스템입니다.
+하나의 컴포넌트를 두 플랫폼에서 같은 모습과 사용법으로 제공합니다.
 
-## ✨ 핵심 기능
+## ✨ 주요 기능
 
-1. **Atomic Design Architecture**: Atoms, Molecules, Layout으로 구조화된 컴포넌트 계층
-2. **완전한 TypeScript 지원**: 모든 컴포넌트가 타입 안전성을 보장
-3. **테마 시스템**: 일관된 디자인 토큰 기반의 스타일링
-4. **Storybook 문서화**: 인터랙티브 컴포넌트 탐색 및 개발 환경
-5. **자동 배포**: GitHub Pages를 통한 실시간 문서 업데이트
+- **웹·네이티브 공통 API**: 어디서든 `@package/design-system`을 그대로 import합니다.
+- **플랫폼별 최적화**: 웹은 DOM, 네이티브는 React Native 컴포넌트로 렌더링합니다.
+- **일관된 디자인**: 색상, 크기, 간격, 타이포그래피 토큰을 두 플랫폼이 함께 사용합니다.
+- **모션 지원**: 웹은 Motion, 네이티브는 Reanimated를 사용하며 사용법은 동일합니다.
+- **라이브 문서**: Fumadocs에서 컴포넌트와 모션 API를 직접 확인할 수 있습니다.
+- **예제 앱**: Vite와 Expo 앱에서 같은 화면을 비교할 수 있습니다.
+
+## 📸 데모
+
+### 모바일
+
+<img
+  src="https://github.com/user-attachments/assets/bf2b4ba5-d9f1-48d1-996d-107ab16cf32c"
+  width="360"
+  alt="Shared RN UIKit 모바일 데모"
+/>
+
+### 웹
+
+<img
+  src="https://github.com/user-attachments/assets/586ab4b6-1403-44cf-82a0-56bc8447ce5e"
+  width="800"
+  alt="Shared RN UIKit 웹 데모"
+/>
 
 ## 🛠 기술 스택
 
-- **Styling**: `Emotion`, `React Native`
-- **Documentation**: `Storybook 8.6`, `React Native`
-- **Deployment**: `GitHub Pages` (with GitHub Actions)
+- **Web**: React 19, Vite, DOM
+- **Native**: React Native 0.79, Expo 53
+- **Motion**: Motion 12, Reanimated 3
+- **Docs**: Next.js 15, Fumadocs
+- **Monorepo**: pnpm workspace
+- **Test**: Storybook 8, Storybook Test Runner
 
-## 🏗 프로젝트 구조
+## 🚀 시작하기
+
+Node.js 22와 pnpm 10이 필요합니다.
+
+```bash
+pnpm install
+```
+
+```bash
+pnpm docs:dev       # 문서 사이트
+pnpm web            # 웹 예제
+pnpm native         # Expo 예제
+pnpm storybook      # Storybook
+```
+
+이 저장소는 `workspace:*` 의존성을 사용하므로 npm이나 yarn 대신 pnpm을 사용해야 합니다.
+
+## 📦 패키지 구성
 
 ```text
-shared/
-├── ui/
-│   ├── atoms/       # 가장 기본적인 UI 요소 (Button, Typography, etc.)
-│   ├── molecules/   # 조합된 컴포넌트 (Avatar, Badge, Chip, etc.)
-│   ├── layout/      # 레이아웃 컴포넌트 (Container, Grid, etc.)
-│   └── utils/       # UI 관련 유틸리티
-├── utils/
-│   └── lib/         # 테마 토큰, 공통 유틸리티
-stories/             # Storybook 스토리 및 문서
+apps/
+└─ docs/                    # Next.js + Fumadocs 문서 사이트
+
+examples/
+├─ web/                     # Vite 웹 예제
+└─ native/                  # Expo 네이티브 예제
+
+packages/
+├─ design-system/           # 컴포넌트, 테마, 디자인 토큰
+└─ motion/                  # Fade, Slide, Scale 모션
 ```
 
-## 🏗 아키텍처 패턴
+## 💻 사용 예시
 
-### Compound Component Pattern
+### Design System
 
-이 프로젝트는 **Compound Component Pattern(복합 컴포넌트 패턴)**을 사용하여 컴포넌트를 구성합니다:
+```tsx
+import { Button, SettingRow, Switch } from '@package/design-system';
 
-```typescript
-// 메인 컴포넌트가 여러 서브 컴포넌트를 속성으로 가짐
-const Button = ButtonBase as ButtonComponent;
-Button.Static = Static;
-Button.Opacity = Opacity;
-Button.Highlight = Highlight;
+<SettingRow
+  title="알림"
+  description="새 소식을 푸시 알림으로 받습니다."
+  action={<Switch checked={enabled} onChange={setEnabled} />}
+/>;
 
-// 사용 방법
-<Button.Static>정적 버튼</Button.Static>
-<Button.Opacity>오파시티 버튼</Button.Opacity>
-<Button.Highlight>하이라이트 버튼</Button.Highlight>
+<Button onPress={save}>저장</Button>;
 ```
 
-#### 장점
+같은 import를 사용해도 웹에서는 `.web.tsx`, 네이티브에서는 `.native.tsx` 구현이 자동으로 선택됩니다.
 
-- **의미 있는 이름**: `Button.Static`이 `ButtonStatic`보다 직관적
-- **논리적 그룹화**: 관련 컴포넌트들을 하나로 묶음
-- **타입 안전성**: TypeScript로 완벽한 타입 지원
-- **확장성**: 새로운 변이(variant)를 쉽게 추가 가능
+### Motion
 
-#### 적용 대상
+대부분의 경우 `Fade`, `Slide`, `Scale` 컴포넌트만 사용하면 됩니다. `MotionBox`를 따로 감쌀 필요는 없습니다.
 
-- **Button**: 다양한 상호작용 방식(static, opacity, highlight)
-- **Typo**: 다양한 텍스트 스타일(H1, H2, Body1, Button 등)
+```tsx
+import { Slide } from '@package/motion';
 
-### Simple Export Pattern
-
-단일 목적의 컴포넌트는 간단한 내보내기 패턴을 사용합니다:
-
-```typescript
-// 단일 컴포넌트만 내보내기
-import Radio from '@shared/ui/atoms/radio/Radio';
-export default Radio;
-export { IRadioProps } from '@shared/ui/atoms/radio/radio.interface';
+<Slide visible={visible} from="bottom" sizing="intrinsic">
+  <ToastContent />
+</Slide>;
 ```
 
-#### 적용 대상
+래퍼의 위치나 레이아웃을 직접 지정해야 할 때는 훅과 `MotionBox`를 함께 사용합니다.
 
-- **Radio, Checkbox**: 주요 기능이 하나로 명확한 컴포넌트
-- **Avatar, Badge, Divider**: 단일 목적의 UI 요소
+```tsx
+import { MotionBox, useFade } from '@package/motion';
 
-## 개발 가이드
+const motion = useFade({ visible });
 
-### 컴포넌트 추가
+return (
+  <MotionBox motion={motion} layoutStyle={layoutStyle}>
+    {children}
+  </MotionBox>
+);
+```
 
-1. `shared/ui/atoms/` 또는 `shared/ui/molecules/`에 컴포넌트 추가
-2. `stories/` 폴더에 해당 컴포넌트의 Storybook 스토리 생성
-3. TypeScript 타입 정의 및 테마 토큰 활용
+## 🎨 Components
 
-### 테마 커스터마이징
+### Atoms
 
-테마 토큰은 `shared/utils/lib/themeToken.ts`에서 관리됩니다. 색상, 타이포그래피, 간격 등을 중앙에서 관리할 수 있습니다.
+`Button`, `Typo`, `Avatar`, `Badge`, `Chip`, `Divider`, `Switch`,
+`Checkbox`, `Radio`, `Slider`, `ProgressBar`, `Skeleton`, `Spacer`
 
-## 🎨 컴포넌트 목록
+### Molecules
 
-### Atoms (기본 요소)
+`TextInput`, `TextArea`, `SegmentedControl`, `Modal`, `Tooltip`, `Toast`
 
-- [x] **Button**: 다양한 스타일과 상태를 지원하는 버튼
-- [x] **Typography**: 텍스트 스타일링 컴포넌트
-- [x] **Divider**: 구분선 컴포넌트
-- [x] **Spacer**: 마진/패딩을 통한 공간 분할
-- [x] **TextInput**: 텍스트 입력 필드
+### Organisms
 
-### Molecules (조합 컴포넌트)
+`ProfileHeader`, `SettingRow`
 
-- [x] **Avatar**: 프로필 이미지 및 이니셜 표시
-- [x] **Badge**: 상태 표시 (숫자, 점)
-- [x] **Chip**: 선택 가능한 태그 컴포넌트
-- [x] **Progress**: 진행 상태 표시 바
-- [x] **Checkbox**: 체크박스
-- [x] **Radio**: 라디오 버튼
-- [x] **Switch**: 토글 스위치
-
-### Layout (레이아웃 컴포넌트)
-
-- [x] **Container**: 콘텐츠를 감싸는 컨테이너
-- [x] **Grid**: 그리드 레이아웃 시스템
-- [x] **Card**: 카드형 컨테이너
-
-### 유틸리티
-
-- [x] **Loading**: 로딩 인디케이터
-- [x] **ErrorBoundary**: 에러 바운더리
-- [x] **Skeleton**: 로딩 스켈레톤 UI
+컴포넌트별 Props와 예제는 **[Live Docs](https://slobbie.github.io/shared-rn-uikit/)**에서 확인할 수 있습니다.

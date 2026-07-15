@@ -1,6 +1,6 @@
 ---
 title: useScale
-description: Scale의 플랫폼 바인딩과 presence 상태를 만드는 저수준 훅
+description: Scale 효과의 레이아웃을 직접 구성할 때 사용하는 훅
 ---
 
 ```tsx
@@ -11,4 +11,5 @@ const motion = useScale({ visible, from: 0.92 });
 return <MotionBox motion={motion}>{children}</MotionBox>;
 ```
 
-반환된 바인딩은 Web에서는 Motion target, Native에서는 Reanimated animated style을 포함한다. 소비자는 내부 값을 해석하지 않고 `MotionBox`에 전달한다.
+훅의 반환값은 그대로 `MotionBox`의 `motion`에 전달하세요.
+일반적인 크기 전환에는 `Scale` 컴포넌트를 사용하는 편이 간단합니다.

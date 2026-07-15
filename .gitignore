@@ -38,6 +38,7 @@ yarn-error.*
 
 # Next.js
 .next/
+apps/docs/out/
 
 # fumadocs 생성물
 .source/

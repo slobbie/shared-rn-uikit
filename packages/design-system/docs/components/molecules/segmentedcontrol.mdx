@@ -1,6 +1,6 @@
 ---
 title: SegmentedControl
-description: iOS 스타일 세그먼트 선택 컨트롤
+description: 나란히 배치된 여러 항목 중 하나를 선택합니다
 ---
 
 ## 예제
@@ -14,7 +14,7 @@ import { SegmentedControl } from '@package/design-system';
   options={['전체', '진행중', '완료']}
   value={filter}
   onChange={setFilter}
-/>;
+/>
 ```
 
 ## Props
@@ -23,11 +23,8 @@ import { SegmentedControl } from '@package/design-system';
 | --- | --- | --- | --- |
 | `options` | `string[]` | — | 세그먼트 라벨 목록 |
 | `value` | `string` | — | 선택된 라벨 |
-| `onChange` | `(next: string) => void` | — | 선택 변경 핸들러 |
+| `onChange` | `(next: string) => void` | — | 선택한 항목이 바뀔 때 실행할 함수 |
 | `disabled` | `boolean` | `false` | 비활성화 |
-
-높이 36 / 패딩 2 치수는 `core/tokens/display.ts`의 `SEGMENTED` 공유.
-컨테이너 `grey5` 배경, 선택 항목은 흰 배경 + 그림자.
 
 ## 접근성
 

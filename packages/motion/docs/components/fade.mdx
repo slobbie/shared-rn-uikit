@@ -1,6 +1,6 @@
 ---
 title: Fade
-description: opacity enter·exit를 제공하는 완성형 컴포넌트
+description: 요소를 서서히 보여주거나 숨깁니다
 ---
 
 <FadeMotionDemo />
@@ -13,4 +13,5 @@ import { Fade } from '@package/motion';
 </Fade>;
 ```
 
-`Fade`가 내부에서 `useFade`와 `MotionBox`를 호출한다. 기본 duration은 `DURATION.fast`인 150ms다.
+기본 재생 시간은 150ms입니다. 배경이나 안내 문구처럼 자연스럽게 나타나야 하는
+요소에 사용하세요.

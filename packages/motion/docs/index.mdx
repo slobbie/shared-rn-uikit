@@ -1,67 +1,47 @@
 ---
 title: Motion
-description: Web과 React Native가 같은 계약으로 사용하는 transform·opacity 모션
+description: 웹과 React Native에서 같은 방식으로 사용하는 애니메이션
 ---
 
-`@package/motion`은 Web의 Motion과 React Native의 Reanimated 차이를 숨기고 동일한 API를 제공한다.
-일반 사용자는 `Fade`/`Slide`/`Scale`만 렌더하면 되고, 내부 `MotionBox`가 플랫폼에 맞는 엔진을 선택한다.
+`@package/motion`은 웹과 React Native에서 같은 방식으로 사용할 수 있는
+애니메이션 컴포넌트와 훅을 제공합니다.
 
-## 권장 사용 순서
-
-일반 화면에서는 완성형 컴포넌트를 사용한다.
+대부분의 화면에서는 `Fade`, `Slide`, `Scale` 중 필요한 효과를 골라 사용하면 됩니다.
+`MotionBox`를 따로 추가할 필요는 없습니다.
 
 ```tsx
-import { Slide } from '@package/motion';
+import { Fade, Scale, Slide } from '@package/motion';
 
-<Slide visible={visible} from="bottom" sizing="intrinsic">
+<Slide visible={visible} from="bottom">
   <ToastContent />
-</Slide>;
+</Slide>
 ```
 
-기존 요소에 직접 스타일을 적용하거나 여러 모션을 조합해야 할 때만 훅을 사용한다.
+## Components
 
-```tsx
-const motion = useSlide({ visible, from: 'bottom' });
+- [Fade](/docs/motion/components/fade): 요소를 서서히 보여주거나 숨깁니다.
+- [Slide](/docs/motion/components/slide): 요소를 원하는 방향으로 움직이며 보여줍니다.
+- [Scale](/docs/motion/components/scale): 요소의 크기를 조절하며 보여줍니다.
+- [MotionBox](/docs/motion/components/motion-box): 훅과 함께 레이아웃을 직접 구성할 때 사용합니다.
 
-return (
-  <MotionBox motion={motion} sizing="intrinsic">
-    <ToastContent />
-  </MotionBox>
-);
-```
+## 크기 설정
 
-## 구성
+`sizing`으로 애니메이션 영역의 크기를 정할 수 있습니다.
 
-| API | 역할 |
+| 값 | 설명 |
 | --- | --- |
-| `Slide`, `Fade`, `Scale` | 훅과 래퍼를 합친 일반 사용자용 컴포넌트 |
-| `MotionBox` | Web에서는 Motion 요소와 `AnimatePresence`, Native에서는 Reanimated `Animated.View`를 렌더하는 플랫폼 래퍼 |
-| `useSlide`, `useFade`, `useScale` | `MotionBox`가 소비하는 플랫폼 바인딩과 presence 상태를 반환하는 저수준 훅 |
-| `DURATION`, `EASING` | 플랫폼 공통 속도와 cubic-bezier 토큰 |
+| `inherit` | 부모의 레이아웃 설정을 따릅니다. |
+| `intrinsic` | 자식 크기만큼 영역을 차지합니다. |
+| `fill` | 부모 너비를 채웁니다. |
 
-문서는 사용 계층에 따라 분리한다.
-
-- **Components** — `Slide`, `Fade`, `Scale`, `MotionBox`의 렌더링 API
-- **Hooks** — `useSlide`, `useFade`, `useScale`의 저수준 상태·바인딩 API
-
-## sizing
-
-| 값 | 의미 |
-| --- | --- |
-| `inherit` | 부모 레이아웃 규칙을 그대로 따름 |
-| `intrinsic` | 자식 크기로 감싸는 shrink-wrap 래퍼 |
-| `fill` | 부모 너비를 채우는 래퍼 |
-
-크기를 측정하거나 애니메이션하지 않는다. wrapper의 정적 레이아웃만 선택하고 애니메이션은 transform과 opacity에 한정한다.
-
-## Presence 옵션
+## 표시와 숨김
 
 | prop | 기본값 | 설명 |
 | --- | --- | --- |
-| `appear` | `true` | 최초 visible 상태도 enter 재생 |
-| `unmountOnExit` | `true` | exit 완료 후 자식 언마운트 |
-| `reducedMotion` | `'system'` | OS reduced-motion 설정 반영 |
+| `visible` | — | 요소를 보여줄지 정합니다. |
+| `appear` | `true` | 처음 나타날 때도 애니메이션을 적용합니다. |
+| `unmountOnExit` | `true` | 사라지는 애니메이션이 끝나면 요소를 제거합니다. |
+| `reducedMotion` | `'system'` | 기기의 동작 줄이기 설정을 따릅니다. |
 
-exit 중 `visible=true`로 돌아오면 진행 중인 exit를 취소하고 현재 위치에서 enter로 전환한다.
-
-Web exit 수명주기는 Motion의 `AnimatePresence`, Native 진행값과 완료 콜백은 Reanimated의 shared value와 `withTiming`이 담당한다.
+레이아웃을 직접 지정하거나 여러 효과를 조합해야 한다면
+[Hooks](/docs/motion/hooks)을 참고하세요.

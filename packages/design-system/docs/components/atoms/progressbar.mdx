@@ -14,18 +14,16 @@ import { ProgressBar } from '@package/design-system';
   <ProgressBar value={40} accessibilityLabel="업로드 진행률" />
   <ProgressBar value={100} variant="success" />
   <ProgressBar value={70} variant="error" />
-</>;
+</>
 ```
 
 ## Props
 
 | prop | 타입 | 기본값 | 설명 |
 | --- | --- | --- | --- |
-| `value` | `number` | — | 진행률 0–100 (범위 밖은 클램프) |
-| `variant` | `'primary' \| 'success' \| 'error'` | `'primary'` | 채움 색상 |
+| `value` | `number` | — | 0부터 100까지의 진행률 |
+| `variant` | `'primary' \| 'success' \| 'error'` | `'primary'` | 상태에 맞는 색상 |
 | `accessibilityLabel` | `string` | — | 스크린리더 레이블 |
-
-높이 8 / 반경 999 치수는 `core/tokens/display.ts`의 `PROGRESS` 공유. 트랙은 `grey5`.
 
 ## 접근성
 

@@ -40,6 +40,7 @@ export const Toast: React.FC<ToastProps> = ({
         position: 'fixed',
         inset: 0,
         display: 'flex',
+        flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'flex-end',
         paddingBottom: TOAST.offset,

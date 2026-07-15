@@ -18,7 +18,7 @@ import { TextArea } from '@package/design-system';
   numberOfLines={4}
   helperText="최대 500자"
   accessibilityLabel="메모 입력"
-/>;
+/>
 ```
 
 ## Props
@@ -26,16 +26,14 @@ import { TextArea } from '@package/design-system';
 | prop | 타입 | 기본값 | 설명 |
 | --- | --- | --- | --- |
 | `value` | `string` | — | 현재 입력값 |
-| `onChangeText` | `(text: string) => void` | — | 입력 변경 핸들러 |
+| `onChangeText` | `(text: string) => void` | — | 입력값이 바뀔 때 실행할 함수 |
 | `placeholder` | `string` | — | 플레이스홀더 |
 | `label` | `string` | — | 필드 상단 레이블 |
 | `helperText` | `string` | — | 필드 하단 보조 텍스트 |
-| `error` | `boolean` | `false` | 에러 상태 (테두리/레이블/헬퍼 색상) |
+| `error` | `boolean` | `false` | 오류 스타일을 표시할지 여부 |
 | `disabled` | `boolean` | `false` | 비활성화 |
-| `numberOfLines` | `number` | `4` | 표시 줄 수 (web: rows) |
+| `numberOfLines` | `number` | `4` | 기본으로 표시할 줄 수 |
 | `accessibilityLabel` | `string` | — | 스크린리더 레이블 |
-
-최소 높이 96 / 폰트 15 치수는 `core/tokens/input.ts`의 `INPUT` 공유.
 
 ## 접근성
 

@@ -1,6 +1,0 @@
-{
-  "title": "Utilities",
-  "description": "공용 유틸리티",
-  "root": true,
-  "pages": ["index"]
-}

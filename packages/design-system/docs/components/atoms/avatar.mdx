@@ -1,6 +1,6 @@
 ---
 title: Avatar
-description: 프로필 아바타 — 이미지 또는 이름 이니셜, 3단계 크기
+description: 이미지나 이름의 첫 글자로 프로필을 표시합니다
 ---
 
 ## 예제
@@ -10,16 +10,15 @@ description: 프로필 아바타 — 이미지 또는 이름 이니셜, 3단계 
 ```tsx
 import { Avatar } from '@package/design-system';
 
-<Avatar size="lg" name="김하늘" />;
+<Avatar size="lg" name="홍길동" />
 ```
 
-이미지가 없으면 이름에서 이니셜을 만듭니다 — 라틴 문자는 앞 두 글자 대문자, 한글은 첫 글자.
+이미지가 없으면 이름으로 이니셜을 만듭니다. 영문 이름은 앞 두 글자를 대문자로,
+한글 이름은 첫 글자를 표시합니다.
 
 ## 크기
 
-`core/tokens/sizes.ts`의 `AVATAR_SIZE` 공유.
-
-| size | 지름 | 폰트 |
+| 크기 | 지름 | 글자 크기 |
 | --- | --- | --- |
 | `sm` | 32 | 13 |
 | `md` | 44 | 16 |

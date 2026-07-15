@@ -1,6 +1,6 @@
 ---
 title: Radio
-description: 단일 선택 라디오 버튼
+description: 여러 항목 중 하나를 선택합니다
 ---
 
 ## 예제
@@ -15,7 +15,7 @@ import { Radio } from '@package/design-system';
   onPress={() => setPlan('pro')}
   label="프로 요금제"
   accessibilityLabel="프로 요금제"
-/>;
+/>
 ```
 
 ## Props
@@ -23,12 +23,10 @@ import { Radio } from '@package/design-system';
 | prop | 타입 | 기본값 | 설명 |
 | --- | --- | --- | --- |
 | `selected` | `boolean` | — | 선택 상태 |
-| `onPress` | `() => void` | — | 선택 핸들러 |
+| `onPress` | `() => void` | — | 항목을 눌렀을 때 실행할 함수 |
 | `label` | `string` | — | 컨트롤 오른쪽 레이블 |
 | `disabled` | `boolean` | `false` | 비활성화 |
 | `accessibilityLabel` | `string` | — | 스크린리더 레이블 |
-
-링 20×20 / 도트 10 치수는 `core/tokens/selection.ts`의 `RADIO` 공유.
 
 ## 접근성
 

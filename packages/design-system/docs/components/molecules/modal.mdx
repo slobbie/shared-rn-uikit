@@ -1,6 +1,6 @@
 ---
 title: Modal
-description: 백드롭 위 중앙 카드 형태의 모달 다이얼로그
+description: 화면 위에 중요한 내용이나 선택지를 표시합니다
 ---
 
 ## 예제
@@ -12,7 +12,7 @@ import { Modal } from '@package/design-system';
 
 <Modal visible={open} onClose={() => setOpen(false)} title="알림">
   <Typo>저장하시겠습니까?</Typo>
-</Modal>;
+</Modal>
 ```
 
 ## Props
@@ -20,11 +20,9 @@ import { Modal } from '@package/design-system';
 | prop | 타입 | 기본값 | 설명 |
 | --- | --- | --- | --- |
 | `visible` | `boolean` | — | 표시 여부 |
-| `onClose` | `() => void` | — | 닫기 핸들러 (백드롭 클릭 / ESC) |
+| `onClose` | `() => void` | — | 바깥 영역을 누르거나 ESC 키를 눌렀을 때 실행할 함수 |
 | `title` | `string` | — | 상단 제목 |
 | `children` | `ReactNode` | — | 본문 내용 |
-
-카드 radius 16 / padding 24 / maxWidth 400 치수는 `core/tokens/overlay.ts`의 `MODAL` 공유.
 
 ## 접근성
 

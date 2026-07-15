@@ -1,6 +1,6 @@
 ---
 title: Button
-description: 주요 액션 버튼 — primary / secondary / ghost, 3단계 크기, loading 상태
+description: 사용자의 주요 동작을 실행하는 버튼입니다
 ---
 
 ## 예제
@@ -19,9 +19,7 @@ import { Button } from '@package/design-system';
 
 <ButtonSizeDemo />
 
-크기 치수는 `core/state/button.ts`의 `BUTTON_SIZE`에서 양 플랫폼이 공유합니다.
-
-| size | 높이 | 좌우 패딩 | 폰트 |
+| 크기 | 높이 | 좌우 여백 | 글자 크기 |
 | --- | --- | --- | --- |
 | `sm` | 32 | 12 | 13 |
 | `md` | 44 | 16 | 15 |
@@ -31,12 +29,12 @@ import { Button } from '@package/design-system';
 
 | prop | 타입 | 기본값 | 설명 |
 | --- | --- | --- | --- |
-| `variant` | `'primary' \| 'secondary' \| 'ghost'` | `'primary'` | 색상 변형 |
+| `variant` | `'primary' \| 'secondary' \| 'ghost'` | `'primary'` | 버튼 스타일 |
 | `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | 크기 |
 | `disabled` | `boolean` | `false` | 비활성화 |
-| `loading` | `boolean` | `false` | 로딩 스피너 표시, 인터랙션 차단 |
-| `onPress` | `() => void` | — | 클릭/탭 핸들러 |
-| `accessibilityLabel` | `string` | — | 텍스트 children이 아닌 경우 필수 |
+| `loading` | `boolean` | `false` | 로딩 표시와 함께 입력을 막을지 여부 |
+| `onPress` | `() => void` | — | 버튼을 눌렀을 때 실행할 함수 |
+| `accessibilityLabel` | `string` | — | 버튼에 텍스트가 없을 때 읽어 줄 설명 |
 
 ## 접근성
 

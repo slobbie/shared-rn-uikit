@@ -53,7 +53,7 @@ const App = () => {
           }}
         >
           {/* 프로필 헤더 */}
-          <ProfileHeader name="김하늘" email="haneul.kim@example.com" badgeLabel="PRO" />
+          <ProfileHeader name="홍길동" email="gildong.hong@example.com" badgeLabel="PRO" />
 
           <Divider spacing={20} />
 

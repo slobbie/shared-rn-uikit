@@ -16,21 +16,21 @@ import { Toast } from '@package/design-system';
   variant="success"
   duration={3000}
   onHide={() => setToastVisible(false)}
-/>;
+/>
 ```
 
 ## Props
 
 | prop | 타입 | 기본값 | 설명 |
 | --- | --- | --- | --- |
-| `visible` | `boolean` | — | 표시 여부 (제어형) |
+| `visible` | `boolean` | — | 표시 여부 |
 | `message` | `string` | — | 알림 텍스트 |
-| `variant` | `'info' \| 'success' \| 'error'` | `'info'` | 색상 변형 |
-| `duration` | `number` | `3000` | 자동 숨김 ms (`0`이면 유지) |
-| `onHide` | `() => void` | — | 숨김 핸들러 (타이머 만료 시 호출) |
+| `variant` | `'info' \| 'success' \| 'error'` | `'info'` | 알림 종류 |
+| `duration` | `number` | `3000` | 자동으로 사라질 때까지의 시간(ms). `0`이면 계속 표시합니다. |
+| `onHide` | `() => void` | — | 알림이 사라질 때 실행할 함수 |
 
-padding 12×16 / radius 10 치수는 `core/tokens/overlay.ts`의 `TOAST` 공유.
-Native는 가장 가까운 화면 컨테이너 기준 절대 배치 — 화면 루트 근처에 렌더링 권장.
+React Native에서는 현재 화면을 기준으로 위치를 잡을 수 있도록 화면의 최상단에 가깝게
+렌더링하세요.
 
 ## 접근성
 

@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { ScrollView, View } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import {
   Button,
@@ -13,6 +14,7 @@ import {
 const INTERESTS = ['디자인 시스템', 'React', 'React Native', 'TypeScript', 'Storybook'];
 
 export default function ProfileSettingsScreen() {
+  const insets = useSafeAreaInsets();
   const [selected, setSelected] = useState<string[]>(['디자인 시스템', 'React']);
   const [pushEnabled, setPushEnabled] = useState(true);
   const [emailEnabled, setEmailEnabled] = useState(false);
@@ -53,7 +55,10 @@ export default function ProfileSettingsScreen() {
   return (
     <ScrollView
       style={{ flex: 1, backgroundColor: '#f2f4f7' }}
-      contentContainerStyle={{ padding: 16, paddingTop: 40 }}
+      contentContainerStyle={{
+        padding: 16,
+        paddingTop: insets.top + 16,
+      }}
     >
       <View
         style={{
@@ -63,7 +68,11 @@ export default function ProfileSettingsScreen() {
         }}
       >
         {/* 프로필 헤더 */}
-        <ProfileHeader name="김하늘" email="haneul.kim@example.com" badgeLabel="PRO" />
+        <ProfileHeader
+          name="홍길동"
+          email="gildong.hong@example.com"
+          badgeLabel="PRO"
+        />
 
         <Divider spacing={20} />
 

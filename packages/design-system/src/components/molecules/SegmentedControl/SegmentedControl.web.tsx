@@ -41,8 +41,15 @@ export const SegmentedControl: React.FC<SegmentedControlProps> = ({
             }}
             style={{
               flex: 1,
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
               border: 'none',
               borderRadius: SEGMENTED.itemBorderRadius,
+              padding: '0 10px',
+              lineHeight: 1,
+              whiteSpace: 'nowrap',
+              wordBreak: 'keep-all',
               fontSize: SEGMENTED.fontSize,
               fontWeight: selected ? 600 : 400,
               backgroundColor: selected ? theme.colors.text.white : 'transparent',

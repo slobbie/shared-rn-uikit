@@ -12,10 +12,16 @@ export const metadata = {
 };
 
 export default function Layout({ children }: { children: ReactNode }) {
+  const searchApi = `${process.env.NEXT_PUBLIC_BASE_PATH ?? ''}/api/search`;
+
   return (
     <html lang="ko" suppressHydrationWarning>
       <body>
-        <RootProvider>{children}</RootProvider>
+        <RootProvider
+          search={{ options: { type: 'static', api: searchApi } }}
+        >
+          {children}
+        </RootProvider>
       </body>
     </html>
   );

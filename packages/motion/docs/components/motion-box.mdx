@@ -1,9 +1,10 @@
 ---
 title: MotionBox
-description: 플랫폼 애니메이션 엔진과 자식 크기 정책을 숨기는 래퍼
+description: 애니메이션 훅과 레이아웃을 연결하는 컴포넌트
 ---
 
-`MotionBox`는 일반 컴포넌트 사용 시 직접 감쌀 필요가 없다. 훅을 직접 호출할 때만 사용한다.
+`Fade`, `Slide`, `Scale`을 사용할 때는 `MotionBox`를 따로 감쌀 필요가 없습니다.
+애니메이션 훅을 사용하면서 영역의 크기나 스타일을 직접 지정할 때만 사용하세요.
 
 ```tsx
 const motion = useSlide({ visible, from: 'bottom' });
@@ -15,8 +16,9 @@ return (
 );
 ```
 
-- Web: Motion 요소와 `AnimatePresence`를 렌더한다.
-- Native: Reanimated `Animated.View`를 렌더한다.
-- `sizing="intrinsic"`: 자식 크기로 감싼다.
-- `sizing="fill"`: 부모 너비를 채운다.
-- exit 완료 후 언마운트하는 presence 수명주기를 담당한다.
+| prop | 설명 |
+| --- | --- |
+| `motion` | `useFade`, `useSlide`, `useScale`의 반환값을 전달합니다. |
+| `sizing="intrinsic"` | 자식 크기만큼 영역을 차지합니다. |
+| `sizing="fill"` | 부모 너비를 채웁니다. |
+| `layoutStyle` | 애니메이션과 무관한 레이아웃 스타일을 지정합니다. |

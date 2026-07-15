@@ -1,6 +1,6 @@
 ---
 title: ProfileHeader
-description: 아바타·이름·배지·이메일로 구성된 프로필 헤더 — Avatar + Typo + Badge 조합 organism
+description: 아바타와 사용자 정보를 한 줄에 표시합니다
 ---
 
 ## 예제
@@ -10,13 +10,13 @@ description: 아바타·이름·배지·이메일로 구성된 프로필 헤더 
 ```tsx
 import { ProfileHeader } from '@package/design-system';
 
-<ProfileHeader name="김하늘" email="haneul.kim@example.com" badgeLabel="PRO" />;
+<ProfileHeader name="홍길동" email="gildong.hong@example.com" badgeLabel="PRO" />
 ```
 
 ## Props
 
 | prop | 타입 | 기본값 | 설명 |
 | --- | --- | --- | --- |
-| `name` | `string` | — | 이름 — Avatar 이니셜에도 사용 |
+| `name` | `string` | — | 사용자 이름. 아바타의 이니셜에도 사용합니다. |
 | `email` | `string` | — | 보조 텍스트 (선택) |
-| `badgeLabel` | `string` | — | 이름 옆 배지 (선택, primary variant) |
+| `badgeLabel` | `string` | — | 이름 옆에 표시할 배지 문구 |

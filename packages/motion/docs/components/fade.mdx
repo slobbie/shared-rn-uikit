@@ -1,0 +1,16 @@
+---
+title: Fade
+description: opacity enter·exit를 제공하는 완성형 컴포넌트
+---
+
+<FadeMotionDemo />
+
+```tsx
+import { Fade } from '@package/motion';
+
+<Fade visible={visible} sizing="fill">
+  <Backdrop />
+</Fade>;
+```
+
+`Fade`가 내부에서 `useFade`와 `MotionBox`를 호출한다. 기본 duration은 `DURATION.fast`인 150ms다.

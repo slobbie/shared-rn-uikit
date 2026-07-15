@@ -20,6 +20,8 @@ module.exports = function (api) {
           },
         },
       ],
+      // Reanimated worklet 변환 플러그인은 항상 마지막이어야 한다.
+      'react-native-reanimated/plugin',
     ],
   };
 };

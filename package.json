@@ -9,6 +9,7 @@
     "docs:dev": "pnpm --filter docs dev",
     "docs:build": "pnpm --filter docs build",
     "docs:check": "node scripts/docs-check.mjs",
+    "motion:check": "node scripts/motion-check.mjs",
     "test:ui": "pnpm --filter @package/design-system test-storybook",
     "typecheck": "pnpm -r typecheck"
   },

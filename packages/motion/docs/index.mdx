@@ -1,0 +1,67 @@
+---
+title: Motion
+description: Web과 React Native가 같은 계약으로 사용하는 transform·opacity 모션
+---
+
+`@package/motion`은 Web의 Motion과 React Native의 Reanimated 차이를 숨기고 동일한 API를 제공한다.
+일반 사용자는 `Fade`/`Slide`/`Scale`만 렌더하면 되고, 내부 `MotionBox`가 플랫폼에 맞는 엔진을 선택한다.
+
+## 권장 사용 순서
+
+일반 화면에서는 완성형 컴포넌트를 사용한다.
+
+```tsx
+import { Slide } from '@package/motion';
+
+<Slide visible={visible} from="bottom" sizing="intrinsic">
+  <ToastContent />
+</Slide>;
+```
+
+기존 요소에 직접 스타일을 적용하거나 여러 모션을 조합해야 할 때만 훅을 사용한다.
+
+```tsx
+const motion = useSlide({ visible, from: 'bottom' });
+
+return (
+  <MotionBox motion={motion} sizing="intrinsic">
+    <ToastContent />
+  </MotionBox>
+);
+```
+
+## 구성
+
+| API | 역할 |
+| --- | --- |
+| `Slide`, `Fade`, `Scale` | 훅과 래퍼를 합친 일반 사용자용 컴포넌트 |
+| `MotionBox` | Web에서는 Motion 요소와 `AnimatePresence`, Native에서는 Reanimated `Animated.View`를 렌더하는 플랫폼 래퍼 |
+| `useSlide`, `useFade`, `useScale` | `MotionBox`가 소비하는 플랫폼 바인딩과 presence 상태를 반환하는 저수준 훅 |
+| `DURATION`, `EASING` | 플랫폼 공통 속도와 cubic-bezier 토큰 |
+
+문서는 사용 계층에 따라 분리한다.
+
+- **Components** — `Slide`, `Fade`, `Scale`, `MotionBox`의 렌더링 API
+- **Hooks** — `useSlide`, `useFade`, `useScale`의 저수준 상태·바인딩 API
+
+## sizing
+
+| 값 | 의미 |
+| --- | --- |
+| `inherit` | 부모 레이아웃 규칙을 그대로 따름 |
+| `intrinsic` | 자식 크기로 감싸는 shrink-wrap 래퍼 |
+| `fill` | 부모 너비를 채우는 래퍼 |
+
+크기를 측정하거나 애니메이션하지 않는다. wrapper의 정적 레이아웃만 선택하고 애니메이션은 transform과 opacity에 한정한다.
+
+## Presence 옵션
+
+| prop | 기본값 | 설명 |
+| --- | --- | --- |
+| `appear` | `true` | 최초 visible 상태도 enter 재생 |
+| `unmountOnExit` | `true` | exit 완료 후 자식 언마운트 |
+| `reducedMotion` | `'system'` | OS reduced-motion 설정 반영 |
+
+exit 중 `visible=true`로 돌아오면 진행 중인 exit를 취소하고 현재 위치에서 enter로 전환한다.
+
+Web exit 수명주기는 Motion의 `AnimatePresence`, Native 진행값과 완료 콜백은 Reanimated의 shared value와 `withTiming`이 담당한다.

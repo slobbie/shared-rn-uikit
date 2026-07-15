@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { createPortal } from 'react-dom';
+import { MotionBox, useSlide } from '@package/motion';
 
 import { TOAST } from '@shared/core/tokens/overlay';
 import { useTheme } from '@shared/utils/lib/ThemeContext';
@@ -15,6 +16,7 @@ export const Toast: React.FC<ToastProps> = ({
   testID,
 }) => {
   const { theme } = useTheme();
+  const motion = useSlide({ visible, from: 'bottom' });
 
   // 자동 숨김 타이머
   useEffect(() => {
@@ -23,7 +25,7 @@ export const Toast: React.FC<ToastProps> = ({
     return () => clearTimeout(timer);
   }, [visible, duration, onHide]);
 
-  if (!visible) return null;
+  if (!motion.mounted || typeof document === 'undefined') return null;
 
   const backgroundColor =
     variant === 'success'
@@ -34,24 +36,35 @@ export const Toast: React.FC<ToastProps> = ({
 
   return createPortal(
     <div
-      role="status"
-      aria-live="polite"
-      data-testid={testID}
       style={{
         position: 'fixed',
-        bottom: TOAST.offset,
-        left: '50%',
-        transform: 'translateX(-50%)',
-        padding: `${TOAST.paddingVertical}px ${TOAST.paddingHorizontal}px`,
-        borderRadius: TOAST.borderRadius,
-        backgroundColor,
-        color: theme.colors.text.white,
-        fontSize: TOAST.fontSize,
-        maxWidth: '90%',
+        inset: 0,
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'flex-end',
+        paddingBottom: TOAST.offset,
+        boxSizing: 'border-box',
+        pointerEvents: 'none',
         zIndex: 1100,
       }}
     >
-      {message}
+      <MotionBox motion={motion} sizing="intrinsic">
+        <div
+          role="status"
+          aria-live="polite"
+          data-testid={testID}
+          style={{
+            padding: `${TOAST.paddingVertical}px ${TOAST.paddingHorizontal}px`,
+            borderRadius: TOAST.borderRadius,
+            backgroundColor,
+            color: theme.colors.text.white,
+            fontSize: TOAST.fontSize,
+            maxWidth: '90vw',
+          }}
+        >
+          {message}
+        </div>
+      </MotionBox>
     </div>,
     document.body,
   );

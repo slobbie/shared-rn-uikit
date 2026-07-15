@@ -11,9 +11,12 @@ const withMDX = createMDX();
 /** @type {import('next').NextConfig} */
 const config = {
   reactStrictMode: true,
+  // 루트 ESLint 설정은 Expo 앱 전용 resolver를 사용한다.
+  // 문서 앱은 별도 typecheck를 실행하므로 Next build의 중복 lint는 건너뛴다.
+  eslint: { ignoreDuringBuilds: true },
   // 홈 디렉토리의 잡동사니 lockfile 오인 방지
   outputFileTracingRoot: path.resolve(dirname, '../..'),
-  transpilePackages: ['@package/design-system'],
+  transpilePackages: ['@package/design-system', '@package/motion'],
   webpack: (webpackConfig) => {
     webpackConfig.resolve.alias['@shared'] = designSystemSrc;
     return webpackConfig;

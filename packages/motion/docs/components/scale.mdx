@@ -1,0 +1,16 @@
+---
+title: Scale
+description: scale과 opacity enter·exit를 제공하는 완성형 컴포넌트
+---
+
+<ScaleMotionDemo />
+
+```tsx
+import { Scale } from '@package/motion';
+
+<Scale visible={visible} from={0.96} sizing="fill">
+  <ModalCard />
+</Scale>;
+```
+
+`from` 기본값은 `0.96`, duration 기본값은 200ms다. Modal 카드나 Popover처럼 요소 자체를 강조할 때 사용한다.

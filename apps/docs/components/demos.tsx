@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, type CSSProperties, type ReactNode } from 'react';
+import { Fade, Scale, Slide } from '@package/motion';
 
 import {
   Avatar,
@@ -57,6 +58,84 @@ const DemoCard = ({
     </div>
   </ThemeProvider>
 );
+
+const MotionStage = ({ children }: { children: ReactNode }) => (
+  <div
+    style={{
+      minHeight: 88,
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      overflow: 'hidden',
+      borderRadius: 10,
+      backgroundColor: '#f4f7ff',
+    }}
+  >
+    {children}
+  </div>
+);
+
+const MotionSample = ({ children }: { children: ReactNode }) => (
+  <div
+    style={{
+      padding: '12px 16px',
+      borderRadius: 8,
+      backgroundColor: '#315efb',
+      color: '#ffffff',
+      fontWeight: 600,
+    }}
+  >
+    {children}
+  </div>
+);
+
+export const SlideMotionDemo = () => {
+  const [visible, setVisible] = useState(true);
+  return (
+    <DemoCard column>
+      <Button size="sm" onPress={() => setVisible((current) => !current)}>
+        Slide 전환
+      </Button>
+      <MotionStage>
+        <Slide visible={visible} from="bottom" sizing="intrinsic">
+          <MotionSample>아래에서 등장</MotionSample>
+        </Slide>
+      </MotionStage>
+    </DemoCard>
+  );
+};
+
+export const FadeMotionDemo = () => {
+  const [visible, setVisible] = useState(true);
+  return (
+    <DemoCard column>
+      <Button size="sm" onPress={() => setVisible((current) => !current)}>
+        Fade 전환
+      </Button>
+      <MotionStage>
+        <Fade visible={visible} sizing="intrinsic">
+          <MotionSample>투명도 전환</MotionSample>
+        </Fade>
+      </MotionStage>
+    </DemoCard>
+  );
+};
+
+export const ScaleMotionDemo = () => {
+  const [visible, setVisible] = useState(true);
+  return (
+    <DemoCard column>
+      <Button size="sm" onPress={() => setVisible((current) => !current)}>
+        Scale 전환
+      </Button>
+      <MotionStage>
+        <Scale visible={visible} from={0.92} sizing="intrinsic">
+          <MotionSample>크기와 투명도 전환</MotionSample>
+        </Scale>
+      </MotionStage>
+    </DemoCard>
+  );
+};
 
 export const ButtonDemo = () => {
   const [loading, setLoading] = useState(false);

@@ -1,0 +1,18 @@
+---
+title: useFade
+description: Fade의 플랫폼 바인딩과 presence 상태를 만드는 저수준 훅
+---
+
+```tsx
+import { MotionBox, useFade } from '@package/motion';
+
+const motion = useFade({ visible, duration: 150 });
+
+return (
+  <MotionBox motion={motion} layoutStyle={layoutStyle}>
+    {children}
+  </MotionBox>
+);
+```
+
+정적 `layoutStyle`을 wrapper에 직접 지정해야 할 때 사용한다. 기본적인 opacity 전환만 필요하면 `Fade` 컴포넌트를 사용한다.

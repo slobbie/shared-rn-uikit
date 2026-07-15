@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Pressable, Text, View } from 'react-native';
 
+import { MotionBox, useFade } from '@package/motion';
 import { TOOLTIP } from '@shared/core/tokens/overlay';
 import { useTheme } from '@shared/utils/lib/ThemeContext';
 
@@ -13,23 +14,28 @@ export const Tooltip: React.FC<TooltipProps> = ({
 }) => {
   const { theme } = useTheme();
   const [visible, setVisible] = useState(false);
+  const motion = useFade({ visible });
 
   return (
     <View testID={testID} style={{ alignSelf: 'flex-start' }}>
-      {visible ? (
-        // 말풍선 — 트리거 위에 표시
+      <MotionBox
+        motion={motion}
+        sizing="intrinsic"
+        layoutStyle={{
+          position: 'absolute',
+          bottom: '100%',
+          alignSelf: 'center',
+          marginBottom: TOOLTIP.offset,
+          zIndex: 1000,
+        }}
+      >
         <View
           pointerEvents="none"
           style={{
-            position: 'absolute',
-            bottom: '100%',
-            alignSelf: 'center',
-            marginBottom: TOOLTIP.offset,
             paddingVertical: TOOLTIP.paddingVertical,
             paddingHorizontal: TOOLTIP.paddingHorizontal,
             borderRadius: TOOLTIP.borderRadius,
             backgroundColor: theme.colors.text.black,
-            zIndex: 1000,
           }}
         >
           <Text
@@ -42,7 +48,7 @@ export const Tooltip: React.FC<TooltipProps> = ({
             {content}
           </Text>
         </View>
-      ) : null}
+      </MotionBox>
       {/* 탭 토글 */}
       <Pressable onPress={() => setVisible((prev) => !prev)}>
         {children}

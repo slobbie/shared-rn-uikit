@@ -1,0 +1,22 @@
+---
+title: MotionBox
+description: 플랫폼 애니메이션 엔진과 자식 크기 정책을 숨기는 래퍼
+---
+
+`MotionBox`는 일반 컴포넌트 사용 시 직접 감쌀 필요가 없다. 훅을 직접 호출할 때만 사용한다.
+
+```tsx
+const motion = useSlide({ visible, from: 'bottom' });
+
+return (
+  <MotionBox motion={motion} sizing="intrinsic">
+    <Content />
+  </MotionBox>
+);
+```
+
+- Web: Motion 요소와 `AnimatePresence`를 렌더한다.
+- Native: Reanimated `Animated.View`를 렌더한다.
+- `sizing="intrinsic"`: 자식 크기로 감싼다.
+- `sizing="fill"`: 부모 너비를 채운다.
+- exit 완료 후 언마운트하는 presence 수명주기를 담당한다.

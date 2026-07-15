@@ -1,0 +1,19 @@
+---
+title: useSlide
+description: Slide의 플랫폼 바인딩과 presence 상태를 만드는 저수준 훅
+---
+
+```tsx
+import { MotionBox, useSlide } from '@package/motion';
+
+const motion = useSlide({
+  visible,
+  from: 'left',
+  distance: 16,
+  fade: true,
+});
+
+return <MotionBox motion={motion}>{children}</MotionBox>;
+```
+
+훅은 DOM/RN 스타일을 직접 반환하지 않는다. 반환된 플랫폼 바인딩과 exit 상태는 `MotionBox`에 그대로 전달한다. 단순 렌더링에는 `Slide` 컴포넌트를 우선 사용한다.

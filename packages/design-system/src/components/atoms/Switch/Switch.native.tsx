@@ -1,5 +1,6 @@
 import React from 'react';
 import { Pressable, View } from 'react-native';
+import { DURATION, Slide } from '@package/motion';
 
 import { SWITCH } from '@shared/core/tokens/sizes';
 import { useTheme } from '@shared/utils/lib/ThemeContext';
@@ -15,6 +16,7 @@ export const Switch: React.FC<SwitchProps> = ({
 }) => {
   const { theme } = useTheme();
   const { trackWidth, trackHeight, thumbSize, padding } = SWITCH;
+  const thumbTravel = trackWidth - thumbSize - padding * 2;
 
   return (
     <Pressable
@@ -37,19 +39,27 @@ export const Switch: React.FC<SwitchProps> = ({
         justifyContent: 'center',
       }}
     >
-      <View
-        style={{
-          width: thumbSize,
-          height: thumbSize,
-          borderRadius: thumbSize / 2,
-          backgroundColor: '#ffffff',
-          transform: [
-            {
-              translateX: value ? trackWidth - thumbSize - padding * 2 : 0,
-            },
-          ],
-        }}
-      />
+      <View style={{ marginLeft: thumbTravel }}>
+        <Slide
+          visible={value}
+          from="left"
+          distance={thumbTravel}
+          duration={DURATION.fast}
+          fade={false}
+          appear={false}
+          unmountOnExit={false}
+          sizing="intrinsic"
+        >
+          <View
+            style={{
+              width: thumbSize,
+              height: thumbSize,
+              borderRadius: thumbSize / 2,
+              backgroundColor: '#ffffff',
+            }}
+          />
+        </Slide>
+      </View>
     </Pressable>
   );
 };

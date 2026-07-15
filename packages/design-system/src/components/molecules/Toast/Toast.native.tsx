@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { Text, View } from 'react-native';
+import { MotionBox, useSlide } from '@package/motion';
 
 import { TOAST } from '@shared/core/tokens/overlay';
 import { useTheme } from '@shared/utils/lib/ThemeContext';
@@ -15,6 +16,7 @@ export const Toast: React.FC<ToastProps> = ({
   testID,
 }) => {
   const { theme } = useTheme();
+  const motion = useSlide({ visible, from: 'bottom' });
 
   // 자동 숨김 타이머
   useEffect(() => {
@@ -23,7 +25,7 @@ export const Toast: React.FC<ToastProps> = ({
     return () => clearTimeout(timer);
   }, [visible, duration, onHide]);
 
-  if (!visible) return null;
+  if (!motion.mounted) return null;
 
   const backgroundColor =
     variant === 'success'
@@ -43,27 +45,31 @@ export const Toast: React.FC<ToastProps> = ({
         right: 0,
         bottom: 0,
         zIndex: 1100,
+        alignItems: 'center',
+        justifyContent: 'flex-end',
+        paddingBottom: TOAST.offset,
       }}
     >
-      <View
-        accessibilityRole="alert"
-        accessibilityLiveRegion="polite"
-        testID={testID}
-        style={{
-          position: 'absolute',
-          bottom: TOAST.offset,
-          alignSelf: 'center',
-          maxWidth: '90%',
-          paddingVertical: TOAST.paddingVertical,
-          paddingHorizontal: TOAST.paddingHorizontal,
-          borderRadius: TOAST.borderRadius,
-          backgroundColor,
-        }}
-      >
-        <Text style={{ color: theme.colors.text.white, fontSize: TOAST.fontSize }}>
-          {message}
-        </Text>
-      </View>
+      <MotionBox motion={motion} sizing="intrinsic">
+        <View
+          accessibilityRole="alert"
+          accessibilityLiveRegion="polite"
+          testID={testID}
+          style={{
+            maxWidth: '90%',
+            paddingVertical: TOAST.paddingVertical,
+            paddingHorizontal: TOAST.paddingHorizontal,
+            borderRadius: TOAST.borderRadius,
+            backgroundColor,
+          }}
+        >
+          <Text
+            style={{ color: theme.colors.text.white, fontSize: TOAST.fontSize }}
+          >
+            {message}
+          </Text>
+        </View>
+      </MotionBox>
     </View>
   );
 };

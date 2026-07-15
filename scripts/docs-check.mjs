@@ -80,4 +80,113 @@ for (const pkg of PACKAGES) {
   }
 }
 
+// motion은 Components/Hooks 문서를 분리 검사하고 Web/Native 공개 API parity를 강제한다.
+const motion = {
+  name: '@package/motion',
+  dir: path.join(root, 'packages/motion'),
+  entries: ['src/index.web.ts', 'src/index.native.ts'],
+};
+
+const collectValueExports = (source) => {
+  const values = new Set();
+  const pattern = /export\s+\{\s*([A-Za-z0-9_,\s]+?)\s*\}\s+from/g;
+  let match;
+  while ((match = pattern.exec(source)) !== null) {
+    for (const raw of match[1].split(',')) {
+      const name = raw.trim();
+      if (name) values.add(name);
+    }
+  }
+  return values;
+};
+
+const collectFolderExports = (source, folder) => {
+  const values = new Set();
+  const pattern = new RegExp(
+    `export\\s+\\{\\s*([A-Za-z0-9_,\\s]+?)\\s*\\}\\s+from\\s+'\\.\\/${folder}\\/`,
+    'g',
+  );
+  let match;
+  while ((match = pattern.exec(source)) !== null) {
+    for (const raw of match[1].split(',')) {
+      const name = raw.trim();
+      if (name) values.add(name);
+    }
+  }
+  return values;
+};
+
+const motionEntryExports = motion.entries.map((entry) => {
+  const file = path.join(motion.dir, entry);
+  if (!existsSync(file)) {
+    failed = true;
+    console.error(`[docs:check] ${motion.name}: 진입점 없음 — ${entry}`);
+    return new Set();
+  }
+  return collectValueExports(readFileSync(file, 'utf8'));
+});
+
+const [webExports, nativeExports] = motionEntryExports;
+const parityDiff = [
+  ...[...webExports].filter((name) => !nativeExports.has(name)),
+  ...[...nativeExports].filter((name) => !webExports.has(name)),
+];
+if (parityDiff.length > 0) {
+  failed = true;
+  console.error(
+    `[docs:check] ${motion.name}: Web/Native 공개 API 불일치 — ${parityDiff.join(', ')}`,
+  );
+}
+
+const motionEntrySources = motion.entries.map((entry) =>
+  readFileSync(path.join(motion.dir, entry), 'utf8'),
+);
+const hookNames = [
+  ...new Set(
+    motionEntrySources.flatMap((source) => [
+      ...collectFolderExports(source, 'hooks'),
+    ]),
+  ),
+];
+const componentNames = [
+  ...new Set(
+    motionEntrySources.flatMap((source) => [
+      ...collectFolderExports(source, 'components'),
+    ]),
+  ),
+];
+const toSlug = (name) =>
+  name.replace(/([a-z0-9])([A-Z])/g, '$1-$2').toLowerCase();
+
+const missingHookDocs = hookNames.filter((name) => {
+  const slug = toSlug(name);
+  return !existsSync(path.join(motion.dir, `docs/hooks/${slug}.mdx`));
+});
+const missingComponentDocs = componentNames.filter((name) => {
+  const slug = name.replace(/([a-z0-9])([A-Z])/g, '$1-$2').toLowerCase();
+  return !existsSync(path.join(motion.dir, `docs/components/${slug}.mdx`));
+});
+
+if (missingHookDocs.length > 0) {
+  failed = true;
+  console.error(
+    `[docs:check] ${motion.name}: Hooks 문서 누락 — ${missingHookDocs.join(', ')}`,
+  );
+}
+if (missingComponentDocs.length > 0) {
+  failed = true;
+  console.error(
+    `[docs:check] ${motion.name}: Components 문서 누락 — ${missingComponentDocs.join(', ')}`,
+  );
+}
+if (
+  missingHookDocs.length === 0 &&
+  missingComponentDocs.length === 0 &&
+  parityDiff.length === 0
+) {
+  console.log(
+    `[docs:check] ${motion.name}: OK — 공개 API parity, Components ${componentNames.length}개·Hooks ${hookNames.length}개 문서 분리 일치`,
+  );
+}
+
 process.exit(failed ? 1 : 0);

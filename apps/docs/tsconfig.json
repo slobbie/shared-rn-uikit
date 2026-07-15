@@ -18,7 +18,8 @@
     "paths": {
       "@/*": ["./*"],
       "@shared/*": ["../../packages/design-system/src/*"],
-      "@package/design-system": ["../../packages/design-system/src/index.web.ts"]
+      "@package/design-system": ["../../packages/design-system/src/index.web.ts"],
+      "@package/motion": ["../../packages/motion/src/index.web.ts"]
     }
   },
   "include": [
